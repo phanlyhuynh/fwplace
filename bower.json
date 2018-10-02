@@ -1,0 +1,20 @@
+{
+  "name": "fwplace",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Tien Nguyen <nguyentien1098@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tiennguyen98/fwplace",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "metro-asset": "https://github.com/tiennguyen98/metro-asset.git"
+  }
+}
