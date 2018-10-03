@@ -1,5 +1,21 @@
 {
+    "Manager": "Manager",
     "My Profile": "My Profile",
     "Logout": "Logout",
-    "Remember me": "Remember me"
+    "Remember me": "Remember me",
+    "Workspaces": "Workspaces",
+    "Workspaces List": "Workspaces List",
+    "Add Workspace": "Add Workspaces",
+    "Workspace Photo": "Workspace Photo",
+    "Add new": "Add new",
+    "Have no data!": "Have no data!",
+    "Delete this item?": "Delete this item?",
+    "Add Workspace": "Add Workspace",
+    "Have no data!": "Have no data!",
+    "Edit Workspace": "Edit Workspace",
+    "Workspace Name": "Workspace Name",
+    "Workspace Photo": "Workspace Photo",
+    "Save": "Save",
+    "Reset": "Reset",
+    "Choose photo": "Choose photo"
 }

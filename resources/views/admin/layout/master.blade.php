@@ -8,6 +8,8 @@
     <script src="{{ asset('js/webfont.js') }}"></script>
 
     @include('admin.assets.css')
+
+    @yield('css')
     
     <link rel="shortcut icon" href="{{ asset('bower_components/metro-asset/demo/default/media/img/logo/favicon.ico') }}" />
 </head>
@@ -30,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- END: Subheader -->
 
                 <div class="m-content">
@@ -51,6 +52,8 @@
 
     @include('admin.assets.js')
     @include('sweetalert::alert')
+
+    @yield('js')
 
 </body>
 </html>
