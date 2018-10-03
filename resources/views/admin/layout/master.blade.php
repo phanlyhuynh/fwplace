@@ -50,6 +50,7 @@
     </div>
 
     @include('admin.assets.js')
+    @include('sweetalert::alert')
 
 </body>
 </html>
