@@ -20,6 +20,7 @@
 
                 <!--begin::Form-->
                 {!! Form::model($position, ['url' => 'admin/positions/' . $position->id, 'method' => 'PATCH', 'class' => 'm-form']) !!}
+                {!! Form::hidden('id', $position->id) !!}
                 <div class="m-portlet__body">
                     <div class="form-group m-form__group">
                         {!! Form::label('Position:') !!}
@@ -36,7 +37,7 @@
                         <div class="row">
                             <div class="col m--align-left">
                                 {!! Form::submit('Submit', ['class' => 'btn btn-brand']) !!}
-                                <a href="{{ url('admin/positions') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ url('admin/positions') }}" class="btn btn-secondary">{{ trans('Cancel') }}</a>
                             </div>
                             <div class="col m--align-right">
                                 {!! Form::reset('Reset', ['class' => 'btn btn-danger']) !!}
