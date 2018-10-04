@@ -14,4 +14,5 @@
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('positions', 'PositionController');
     Route::resource('workspaces', 'WorkspaceController');
+    Route::resource('programs', 'ProgramController');
 });

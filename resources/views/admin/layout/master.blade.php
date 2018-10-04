@@ -32,7 +32,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- END: Subheader -->
 
                 <div class="m-content">
