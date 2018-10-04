@@ -13,4 +13,14 @@ class WorkspaceRepository extends EloquentRepository
     {
         return $this->model->latest()->get();
     }
+
+    public function getOwnLocation()
+    {
+        return $this->model->with('locations')->paginate();
+    }
+
+    public function listWorkspaceArray()
+    {
+        return $this->model->pluck('name', 'id')->toArray();
+    }
 }

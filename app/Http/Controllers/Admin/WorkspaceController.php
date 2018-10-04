@@ -60,6 +60,7 @@ class WorkspaceController extends Controller
             $data['image'] = $request->image->hashName();
         }
         $save = $this->workspace->create($data);
+        alert()->success(__('Add Workspace'), __('Successfully!!!'));
 
         return redirect()->route('workspaces.index');
     }
@@ -96,11 +97,12 @@ class WorkspaceController extends Controller
         );
         $data = $request->all();
         if ($request->hasFile('image')) {
-            Storage::delete(config('site.workspace.image') . '/' . $workspace->image);
+            Storage::delete(config('site.workspace.image') . $workspace->image);
             $request->image->store(config('site.workspace.image'));
             $data['image'] = $request->image->hashName();
         }
         $save = $this->workspace->update($data, $id);
+        alert()->success(__('Edit Workspace'), __('Successfully!!!'));
 
         return redirect()->route('workspaces.index');
     }
@@ -114,6 +116,7 @@ class WorkspaceController extends Controller
     public function destroy($id)
     {
         $workspace = $this->workspace->delete($id);
+        alert()->success(__('Delete Workspace'), __('Successfully!!!'));
 
         return redirect()->route('workspaces.index');
     }

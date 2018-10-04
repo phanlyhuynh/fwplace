@@ -153,11 +153,11 @@ abstract class EloquentRepository implements RepositoryInterface
 
     public function paginate($perPage = null, $columns = ['*'])
     {
-        $perPage = $perPage === null ? config('database.paginate') : $perPage;
         $this->newQuery()
             ->loadWhere();
+        $numPosts = $perPage === null ? config('database.paginate') : $perPage;
 
-        return $this->model->paginate($perPage = config('database.paginate'), $columns = ['*']);
+        return $this->model->paginate($numPosts, $columns = ['*']);
     }
 
     public function orderBy($key, $value)
