@@ -23,7 +23,12 @@ class User extends Authenticatable
         'email',
         'password',
         'status',
-
+        'avatar',
+        'program_id',
+        'workspace_id',
+        'position_id',
+        'status',
+        'lang'
     ];
 
     /**
@@ -35,8 +40,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $guarded = ['id'];
-
     public function program()
     {
         return $this->belongsTo('App\Models\Program');
@@ -44,7 +47,7 @@ class User extends Authenticatable
 
     public function workspace()
     {
-        return $this->belongsTo('App\Models\WorkSpace');
+        return $this->belongsTo('App\Models\Workspace');
     }
 
     public function position()
@@ -55,6 +58,16 @@ class User extends Authenticatable
     public function workschedules()
     {
         return $this->hasMany('App\Models\WorkSchedule', 'user_id');
+    }
+
+    public function getAvatarUserAttribute()
+    {
+        if ($this->avatar)
+        {
+            return asset(config('site.user.display-image') . $this->avatar);
+        }
+
+        return asset(config('site.default-image'));
     }
 
 }

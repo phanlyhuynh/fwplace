@@ -17,6 +17,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
     Route::resource('workspaces', 'WorkspaceController');
     Route::resource('programs', 'ProgramController');
     Route::resource('locations', 'LocationController');
+    Route::resource('users', 'UserController');
 });
 
 Auth::routes();

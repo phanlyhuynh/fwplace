@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PositionFormRequest extends FormRequest
+class UserFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,10 @@ class PositionFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:2|max:255|unique:positions,name,' . $this->id
+            'name' => 'required|min:3|max:255',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:6'
+
         ];
     }
 }
