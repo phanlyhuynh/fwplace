@@ -10,7 +10,7 @@
     @include('admin.assets.css')
 
     <link rel="stylesheet" href="{{ asset('bower_components/metro-asset/vendors/base/my-custom.css') }}">
-    <link rel="shortcut icon" href="{{ asset('bower_components/metro-asset/demo/default/media/img/logo/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset(config('site.static') . 'favicon.png') }}" />
 </head>
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
     <div class="m-grid m-grid--hor m-grid--root m-page">
@@ -19,7 +19,7 @@
                 <div class="m-login__container">
                     <div class="m-login__logo">
                         <a href="#">
-                            {!! Html::image(config('site.logo') . 'framgia-logo.png') !!}
+                            {!! Html::image(config('site.static') . 'framgia-logo.png') !!}
                         </a>
                     </div>
                     <div class="m-login__signin">

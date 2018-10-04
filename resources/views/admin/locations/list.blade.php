@@ -9,6 +9,19 @@
     <div class="m-portlet__body">
         <div class="m-section">
             <div class="m-section__content">
+                {!! Form::open(['route' => 'locations.index', 'class' => 'row mb-3', 'method' => 'GET']) !!}
+                <div class="form-group m-form__group col-md-5">
+                    {!! Form::label(null, __('Workspace'), []) !!}
+                    {!! Form::select('workspace_id', array_merge([__('All')], $workspaces), request('workspace_id'), ['class' => 'form-control m-input m-input--square']) !!}
+                </div>
+                <div class="form-group m-form__group col-md-5">
+                    {!! Form::label(null, __('Location Name'), []) !!}
+                    {!! Form::text('name', request('name'), ['class' => 'form-control m-input m-input--square', 'placeholder' => __('Location Name')]) !!}
+                </div>
+                <div class="col-md-2 pt-2">
+                    {!! Form::submit(__('Apply'), ['class' => 'btn btn-brand mt-4']) !!}
+                </div>
+                {!! Form::close() !!}
                 <table class="table m-table m-table--head-bg-success table-middle">
                     <thead>
                         <tr>

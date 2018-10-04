@@ -27,11 +27,23 @@ class LocationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $locations = $this->location->listLocation();
+        $filter = [
+            'workspace_id' => null,
+            'name' => null
+        ];
 
-        return view('admin.locations.list', compact('locations'));
+        if ($request->has('workspace_id') && $request->has('name')) {
+            $filter = [
+                'workspace_id' => $request->workspace_id,
+                'name' => $request->name
+            ];
+        }
+        $workspaces = $this->workspace->listWorkspaceArray();
+        $locations = $this->location->listLocation($filter);
+
+        return view('admin.locations.list', compact('locations', 'workspaces'));
     }
 
     /**
@@ -113,6 +125,6 @@ class LocationController extends Controller
         $location = $this->location->delete($id);
         alert()->success(__('Delete Location'), __('Successfully!!!'));
 
-        return redirect()->route('locations.index');
+        return redirect()->back();
     }
 }
