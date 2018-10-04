@@ -11,5 +11,6 @@ return [
         'image' => 'public/location/',
         'display-image' => 'storage/location/'
     ],
+    'logo' => 'images/',
 
 ];
