@@ -6,17 +6,28 @@ use App\Http\Requests\UserFormRequest;
 use App\Models\Position;
 use App\Models\Program;
 use App\Models\Workspace;
+use App\Repositories\PositionRepository;
+use App\Repositories\ProgramRepository;
 use App\Repositories\UserRepository;
+use App\Repositories\WorkspaceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
     protected $userRepository;
+    protected $programRepository;
+    protected $positionRepository;
+    protected $workspaceRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, ProgramRepository $programRepository, PositionRepository $positionRepository, WorkspaceRepository $workspaceRepository)
     {
         $this->userRepository = $userRepository;
+        $this->programRepository = $programRepository;
+        $this->positionRepository = $positionRepository;
+        $this->workspaceRepository = $workspaceRepository;
     }
 
     /**
@@ -38,9 +49,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $programs = Program::pluck('name', 'id');
-        $positions = Position::pluck('name', 'id');
-        $workspaces = Workspace::pluck('name', 'id');
+        $programs = $this->programRepository->listprogramArray();
+        $positions = $this->positionRepository->listpositionArray();
+        $workspaces = $this->workspaceRepository->listWorkspaceArray();
 
         return view('admin.user.create', compact('positions', 'programs', 'workspaces'));
     }
@@ -60,6 +71,7 @@ class UserController extends Controller
         }
         $data['password'] = bcrypt($request->password);
         $this->userRepository->create($data);
+        Alert::success(trans('Add new User'), trans('Successfully'));
 
         return redirect('admin/users');
     }
@@ -83,7 +95,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $programs = $this->programRepository->listprogramArray();
+        $positions = $this->positionRepository->listpositionArray();
+        $workspaces = $this->workspaceRepository->listWorkspaceArray();
+        $user = $this->userRepository->findOrFail($id);
+
+        return view('admin.user.edit', compact('positions', 'programs', 'workspaces', 'user'));
     }
 
     /**
@@ -93,9 +110,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserFormRequest $request, $id)
     {
-        //
+        $user = $this->userRepository->findOrFail($id);
+        $data = $request->all();
+        if ($request->hasFile('avatar')) {
+            Storage::delete(config('site.user.image') . $user->avatar);
+            $request->avatar->store(config('site.user.image'));
+            $data['avatar'] = $request->avatar->hashName();
+        }
+        $this->userRepository->update($data, $id);
+        alert()->success(__('Edit User'), __('Successfully!!!'));
+
+        return redirect('admin/users');
     }
 
     /**
@@ -106,6 +133,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->userRepository->delete($id);
+        Alert::success(trans('Delete User'), trans('Successfully'));
+
+        return redirect('admin/users');
     }
 }

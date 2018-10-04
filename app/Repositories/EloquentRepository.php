@@ -176,12 +176,18 @@ abstract class EloquentRepository implements RepositoryInterface
         return $this->model->first();
     }
 
-    public function pluck($columns = ['*'])
+    public function pluck($value = null, $key = null)
     {
-        $this->newQuery()
-            ->loadWhere();
+        if (!$value) {
+            return null;
+        }
+        $this->makeModel();
+        $lists = $this->model->pluck($value, $key);
+        if (is_array($lists)) {
+            return $lists;
+        }
 
-        return $this->model->pluck($columns);
+        return $lists->all();
     }
 
     public function toArray()
