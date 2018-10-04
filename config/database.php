@@ -12,7 +12,7 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
-
+    'paginate' => 20,
     'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
