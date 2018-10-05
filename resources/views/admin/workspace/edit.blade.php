@@ -32,12 +32,14 @@
             </div>
             <div class="form-group m-form__group row">
                 {!! Form::label(null, __('Workspace Name'), ['class' => 'col-lg-2 col-form-label']) !!}
+                <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     {!! Form::text('name', $workspace->name, ['class' => 'form-control m-input', 'placeholder' => ('Workspace Name')]) !!}
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label">@lang('Workspace Photo')</label>
+                {!! Form::label(null, __('Workspace Photo'), ['class' => 'col-lg-2 col-form-label']) !!}
+                <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     <div class="custom-file">
                         {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'input-display']) !!}

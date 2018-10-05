@@ -22,20 +22,26 @@
         <div class="m-portlet__body">
             <div class="form-group m-form__group row">
                 {!! Form::label(null, __('Location Name'), ['class' => 'col-lg-2 col-form-label']) !!}
+                <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     {!! Form::text('name', $location->name, ['class' => 'form-control m-input', 'placeholder' => ('Location Name')]) !!}
+                    <span class="m-form__help">{{ trans('Please enter name') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">
                 {!! Form::label(null, __('Total Seat'), ['class' => 'col-lg-2 col-form-label']) !!}
+                <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     {!! Form::number('total_seat', $location->total_seat, ['class' => 'form-control m-input', 'placeholder' => ('Total Seat'), 'min' => 1]) !!}
+                    <span class="m-form__help">{{ trans('Please enter total seat') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">
                 {!! Form::label('workspace', __('Workspace'), ['class' => 'col-lg-2 col-form-label']) !!}
+                <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     {!! Form::select('workspace_id', $workspaces, $location->workspace_id, ['class' => 'form-control m-input m-input--square', 'id' => 'workspace']) !!}
+                    <span class="m-form__help">{{ trans('Please select workspace') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">

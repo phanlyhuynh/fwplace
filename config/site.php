@@ -20,5 +20,10 @@ return [
     'partime' => 0,
     'fulltime' => 1,
     'static' => 'images/',
+    'shift' => [
+        'all' => 1,
+        'morning' => 2,
+        'afternoon' => 3
+    ]
 
 ];

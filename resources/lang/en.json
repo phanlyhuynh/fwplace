@@ -29,5 +29,8 @@
     "Locations List": "Location List",
     "Total Seat": "Total Seat",
     "Apply": "Apply",
-    "All": "All"
+    "All": "All",
+    "Location Calendar": "Location Calendar",
+    "Location Calendar: ": "Location Calendar: :location",
+    "Working Schedule": "Working Schedule"
 }

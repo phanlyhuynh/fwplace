@@ -21,5 +21,19 @@ class UserTableSeeder extends Seeder
             'lang' => 1,
             'status' => 1
         ]);
+
+        $faker = \Faker\Factory::create();
+        foreach (range(1, 50) as $value) {
+            DB::table('users')->insert([
+                'name' => $faker->name,
+                'email' => $faker->email,
+                'password' => bcrypt('framgia'),
+                'program_id' => DB::table('programs')->get()->random()->id,
+                'position_id' => DB::table('positions')->get()->random()->id,
+                'workspace_id' => DB::table('workspaces')->get()->random()->id,
+                'lang' => 1,
+                'status' => 1
+            ]);
+        }
     }
 }

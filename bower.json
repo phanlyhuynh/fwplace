@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "metro-asset": "https://github.com/tiennguyen98/metro-asset.git"
+    "metro-asset": "https://github.com/tiennguyen98/metro-asset.git",
+    "sweetalert2": "^7.28.4"
   }
 }
