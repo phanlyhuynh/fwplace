@@ -30,7 +30,7 @@ interface RepositoryInterface
 
     public function first();
 
-    public function pluck($columns = ['*']);
+    public function pluck($value, $key = null);
 
     public function toArray();
 

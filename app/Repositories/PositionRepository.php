@@ -22,4 +22,9 @@ class PositionRepository extends EloquentRepository
     {
         return $this->model->all();
     }
+
+    public function listpositionArray()
+    {
+        return $this->model->pluck('name', 'id')->toArray();
+    }
 }
