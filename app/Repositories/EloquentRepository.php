@@ -186,7 +186,7 @@ abstract class EloquentRepository implements RepositoryInterface
         if (is_array($lists)) {
             return $lists;
         }
-
+        
         return $lists->all();
     }
 
