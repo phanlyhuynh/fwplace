@@ -10,6 +10,7 @@ $(document).ready(function() {
         defaultDate: todayDate,
         selectable: true,
         displayEventTime: false,
+        fixedWeekCount: false,
         select: function (start) {
             var getClickedDate = start.format('YYYY-MM-DD');
         },

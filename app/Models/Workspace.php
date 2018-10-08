@@ -43,7 +43,7 @@ class Workspace extends Model
 
     public function getTotalSeatAttribute()
     {
-        $total = $this->locations()->count();
+        $total = $this->locations()->sum('total_seat');
         
         return $total;
     }

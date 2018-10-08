@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-class WorkspaceRepository extends EloquentRepository
+class WorkingScheduleRepository extends EloquentRepository
 {
     public function model()
     {
