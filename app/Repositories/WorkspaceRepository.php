@@ -32,18 +32,21 @@ class WorkspaceRepository extends EloquentRepository
         }
         $full_time = $workspace->work_schedules()
             ->select(DB::raw('date as start, shift, CONCAT("' . __('Fulltime:') . '", COUNT(user_id)) as title'))
+            ->whereBetween('date', [$dates['start'], $dates['end']])
             ->where('shift', config('site.shift.all'))
             ->groupBy('date', 'shift', 'workspace_id')
             ->get()->toArray();
 
         $morning = $workspace->work_schedules()
             ->select(DB::raw('date as start, shift, CONCAT("' . __('Morning:') . '", COUNT(user_id)) as title'))
+            ->whereBetween('date', [$dates['start'], $dates['end']])
             ->where('shift', config('site.shift.morning'))
             ->groupBy('date', 'shift', 'workspace_id')
             ->get()->toArray();
 
         $afternoon = $workspace->work_schedules()
             ->select(DB::raw('date as start, shift, CONCAT("' . __('Afternoon:') . '", COUNT(user_id)) as title'))
+            ->whereBetween('date', [$dates['start'], $dates['end']])
             ->where('shift', config('site.shift.afternoon'))
             ->groupBy('date', 'shift', 'workspace_id')
             ->get()->toArray();
