@@ -18,9 +18,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
     Route::resource('programs', 'ProgramController');
     Route::resource('locations', 'LocationController');
     Route::resource('users', 'UserController');
-    Route::group(['prefix' => 'calendar', 'as' => 'calendars.'], function () {
+    Route::group(['prefix' => 'schedule', 'as' => 'schedule.'], function () {
+        Route::get('/', 'WorkingScheduleController@chooseWorkplace')->name('workplace.list');
+        Route::get('/{id}', 'WorkingScheduleController@viewByWorkplace')->name('workplace.view');
+        Route::get('/{id}/get', 'WorkingScheduleController@getData')->name('workplace.get_data');
         Route::get('location/{id}', 'WorkingScheduleController@viewByLocation')->name('location.month');
-        Route::get('location/get/{id}', 'WorkingScheduleController@getCalendar')->name('location.get_data');
     });
 });
 
