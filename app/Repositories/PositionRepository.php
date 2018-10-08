@@ -27,4 +27,9 @@ class PositionRepository extends EloquentRepository
     {
         return $this->model->pluck('name', 'id')->toArray();
     }
+
+    public function pluckPosition()
+    {
+        return $this->model->pluck('name', 'id');
+    }
 }

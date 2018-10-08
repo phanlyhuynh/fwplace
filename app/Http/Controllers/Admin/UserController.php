@@ -10,6 +10,7 @@ use App\Repositories\PositionRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\WorkspaceRepository;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -35,11 +36,34 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = $this->userRepository->get();
+        $programs = $this->programRepository->pluckProgram()->prepend('', config('site.prepend'));
+        $positions = $this->positionRepository->pluckPosition()->prepend('', config('site.prepend'));
+        $workspaces = $this->workspaceRepository->pluckWorkspace()->prepend('', config('site.prepend'));
+        $users = $this->userRepository->newQuery();
+        if ($request->has('name'))
+        {
+            $users->getListName($request->name);
+        }
 
-        return view('admin.user.index', compact('users'));
+        if ($request->has('program_id') && $request->program_id != config('site.prepend'))
+        {
+            $users->getList('program_id', $request->program_id);
+        }
+
+        if ($request->has('workspace_id') && $request->workspace_id != config('site.prepend'))
+        {
+            $users->getList('workspace_id', $request->workspace_id);
+        }
+
+        if ($request->has('position_id') && $request->position_id != config('site.prepend'))
+        {
+            $users->getList('position_id', $request->position_id);
+        }
+        $users = $users->get();
+
+        return view('admin.user.index', compact('users', 'programs', 'positions', 'workspaces'));
     }
 
     /**

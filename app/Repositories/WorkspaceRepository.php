@@ -50,4 +50,9 @@ class WorkspaceRepository extends EloquentRepository
 
         return array_merge($morning, $afternoon, $full_time);
     }
+
+    public function pluckWorkspace()
+    {
+        return $this->model->pluck('name', 'id');
+    }
 }

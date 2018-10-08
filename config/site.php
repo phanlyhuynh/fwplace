@@ -24,6 +24,8 @@ return [
         'all' => 1,
         'morning' => 2,
         'afternoon' => 3
-    ]
+    ],
+    'prepend' => 0,
+    'none_type' => 2,
 
 ];

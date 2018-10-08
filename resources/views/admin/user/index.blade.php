@@ -52,43 +52,28 @@
                         <div class="row m--margin-bottom-20">
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                 {!! Form::label(trans('User')) !!}
-                                {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeholder' => trans('Name'), 'data-col-index' => 0]) !!}
+                                {!! Form::text('name', request('name'), ['class' => 'form-control m-input', 'placeholder' => trans('Name'), 'data-col-index' => 0]) !!}
                             </div>
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                 {!! Form::label(trans('Program')) !!}
-                                {!! Form::select('program_id', ['', 'PHP','Ruby'], null, ['class' => 'form-control m-input', 'data-col-index' => 2]) !!}
+                                {!! Form::select('program_id', $programs, request('program_id'), ['class' => 'form-control m-input', 'data-col-index' => 2]) !!}
                             </div>
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                 {!! Form::label(trans('Workspace')) !!}
-                                {!! Form::select('workspace_id', ['', 'Handico','Lab'], null, ['class' => 'form-control m-input', 'data-col-index' => 2]) !!}
+                                {!! Form::select('workspace_id', $workspaces, request('workspace_id'), ['class' => 'form-control m-input', 'data-col-index' => 2]) !!}
                             </div>
                         </div>
                         <div class="row m--margin-bottom-20">
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
                                 {!! Form::label(trans('Position')) !!}
-                                {!! Form::select('position_id', ['', 'Open','Intern'], null, ['class' => 'form-control m-input', 'data-col-index' => 7]) !!}
-                            </div>
-                            <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                {!! Form::label(trans('Type')) !!}
-                                {!! Form::select('position_type', ['', 'Partime','Fulltime'], null, ['class' => 'form-control m-input', 'data-col-index' => 7]) !!}
+                                {!! Form::select('position_id', $positions, request('position_id'), ['class' => 'form-control m-input', 'data-col-index' => 7]) !!}
                             </div>
                         </div>
                         <div class="m-separator m-separator--md m-separator--dashed"></div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <button class="btn btn-brand m-btn m-btn--icon" id="m_search">
-                                    <span>
-                                        <i class="la la-search"></i>
-                                        <span>{{ trans('Seach') }}</span>
-                                    </span>
-                                </button>
-                                &nbsp;&nbsp;
-                                <button class="btn btn-secondary m-btn m-btn--icon" id="m_reset">
-                                    <span>
-                                        <i class="la la-close"></i>
-                                        <span>{{ trans('Reset') }}</span>
-                                    </span>
-                                </button>
+                                {!! Form::button('<i class="la la-search"><span></span></i>', ['type' => 'submit', 'class' => 'btn btn-brand m-btn m-btn--icon', 'id' => 'm_search']) !!}
+                                {!! Form::button('<i class="la la-close"></i>', ['type' => 'reset', 'class' => 'btn btn-secondary m-btn m-btn--icon', 'id' => 'm_reset']) !!}
                             </div>
                         </div>
                     {!! Form::close() !!}
