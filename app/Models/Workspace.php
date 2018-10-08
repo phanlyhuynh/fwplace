@@ -21,11 +21,25 @@ class Workspace extends Model
     
     public function locations()
     {
-        return $this->hasMany('App\Models\location', 'workspace_id');
+        return $this->hasMany('App\Models\Location', 'workspace_id');
     }
 
     public function getPhotoAttribute()
     {
         return asset(config('site.workspace.display-image') . $this->image);
+    }
+
+    public function delete()
+    {
+        $this->locations()->delete();
+        
+        return parent::delete();
+    }
+
+    public function getTotalSeatAttribute()
+    {
+        $total = $this->locations()->count();
+        
+        return $total;
     }
 }

@@ -18,6 +18,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
     Route::resource('programs', 'ProgramController');
     Route::resource('locations', 'LocationController');
     Route::resource('users', 'UserController');
+    Route::group(['prefix' => 'calendar', 'as' => 'calendars.'], function () {
+        Route::get('location/{id}', 'WorkingScheduleController@viewByLocation')->name('location.month');
+        Route::get('location/get/{id}', 'WorkingScheduleController@getCalendar')->name('location.get_data');
+    });
 });
 
 Auth::routes();

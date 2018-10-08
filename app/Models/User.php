@@ -55,7 +55,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Position');
     }
 
-    public function workschedules()
+    public function work_schedules()
     {
         return $this->hasMany('App\Models\WorkSchedule', 'user_id');
     }
