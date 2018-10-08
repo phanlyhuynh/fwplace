@@ -14,4 +14,9 @@ class ProgramRepository extends EloquentRepository
     {
         return $this->model->pluck('name', 'id')->toArray();
     }
+
+    public function pluckProgram()
+    {
+        return $this->model->pluck('name', 'id');
+    }
 }

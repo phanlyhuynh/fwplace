@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\filters\QueryFilter;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
@@ -68,6 +69,11 @@ class User extends Authenticatable
         }
 
         return asset(config('site.default-image'));
+    }
+
+    public function scopeFilterUser($query, QueryFilter $filters)
+    {
+        return $filters->apply($query);
     }
 
 }

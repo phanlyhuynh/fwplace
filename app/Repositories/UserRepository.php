@@ -18,4 +18,14 @@ class UserRepository extends EloquentRepository
     {
         return User::class;
     }
+
+    public function getListName($name)
+    {
+        return $this->model->where('name', 'like','%' . $name . '%');
+    }
+
+    public function getList($field, $field_id)
+    {
+        return $this->model->where($field, '=', $field_id);
+    }
 }
