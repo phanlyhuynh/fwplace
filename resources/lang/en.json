@@ -32,5 +32,9 @@
     "All": "All",
     "Location Calendar": "Location Calendar",
     "Location Calendar: ": "Location Calendar: :location",
-    "Working Schedule": "Working Schedule"
+    "Work Schedule": "Work Schedule",
+    "Total Seat:": "Total Seat: :total",
+    "Morning:": "1. Morning: ",
+    "Afternoon:": "2. Afternoon: ",
+    "Fulltime:": "3. Fulltime: "
 }

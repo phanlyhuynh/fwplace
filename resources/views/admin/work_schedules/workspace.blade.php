@@ -1,8 +1,8 @@
 @extends('admin.layout.master')
 
-@section('title', __('Working Schedule'))
+@section('title', __('Work Schedule'))
 
-@section('module', __('Working Schedule'))
+@section('module', __('Work Schedule'))
 
 @section('content')
 <div class="m-portlet">
@@ -16,13 +16,16 @@
                                 <i class="flaticon-map-location"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                {{ $location->name }}
+                                {{ $workspace->name }}
                             </h3>
                         </div>
                     </div>
                 </div>
                 <div class="m-portlet__body">
-                    <div id="m_calendar" data-url="{{ route('calendars.location.get_data', ['id' => $location->id]) }}"></div>
+                    <div id="loading" class="text-center">
+                        {!! Html::image(asset(config('site.static') . 'loading.gif'), null) !!}
+                    </div>
+                    <div id="m_calendar" data-url="{{ route('schedule.workplace.get_data', ['id' => $workspace->id]) }}"></div>
                 </div>
             </div>
         </div>
