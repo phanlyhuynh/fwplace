@@ -27,3 +27,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'HomeController@logout');
+Route::resource('user', 'UserController')->middleware('checkUser');

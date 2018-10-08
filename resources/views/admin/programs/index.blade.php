@@ -11,7 +11,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ trans('New Program') }}</th>
+                                    <th>{{ trans('Name Program') }}</th>
                                     <th>
                                         <a href="{{ route('programs.create') }}" class="btn m-btn--pill m-btn--air btn-secondary table-middle " data-toggle="m-tooltip" data-placement="left" data-original-title="{{ trans('Add New') }}">
                                             <i class="flaticon-add"></i>
@@ -28,7 +28,7 @@
                                     <i class="flaticon-edit-1"></i>
                                     </a>
                                     {!! Form::open(['route' => ['programs.destroy', $pro['id'] ],'class' => 'd-inline', 'method' => 'delete']) !!}
-                                        {!! Form::button('<i class="flaticon-cancel"></i>', ['class' => 'btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill', 'data-toggle' => 'm-tooltip', 'data-placement' => 'right','data-skin' => 'dark', 'data-original-title' => trans('Delete'), 'type' => 'submit' ]) !!}
+                                        {!! Form::button('<i class="flaticon-cancel"></i>', ['class' => 'btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill delete', 'data-toggle' => 'm-tooltip', 'data-placement' => 'right','data-skin' => 'dark', 'data-original-title' => trans('Delete'), 'type' => 'submit' ]) !!}
                                     {!! Form::close() !!}</td>
                                 </tr>
                                 @endforeach

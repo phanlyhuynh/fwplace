@@ -26,7 +26,7 @@ class UserFormRequest extends FormRequest
         $rules = [
             'name' => 'required|min:3|max:255',
             'email' => 'required|unique:users,email,' . $this->id,
-            'password' => 'required|min:6'
+            'password' => 'required|string|min:6|confirmed',
         ];
         if ($this->id) {
             $rules = [

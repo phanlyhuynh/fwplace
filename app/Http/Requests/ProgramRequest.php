@@ -24,7 +24,7 @@ class ProgramRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:1',
+            'name' => 'required|unique:programs,name',
         ];
     }
 }

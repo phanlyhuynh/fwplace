@@ -82,7 +82,7 @@
                             <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
-                                        <img src="{{ asset('bower_components/metro-asset/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless" alt="" />
+                                        {!! Html::image(Auth::user()->avatarUser, null, ['class' => 'm--img-rounded m--marginless']) !!}
                                     </span>
                                     <span class="m-topbar__username m--hide">Nick</span>
                                 </a>
@@ -92,11 +92,11 @@
                                         <div class="m-dropdown__header m--align-center">
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
-                                                    <img src="{{ asset('bower_components/metro-asset/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless" alt="" />
+                                                    {!! Html::image(Auth::user()->avatarUser, null, ['class' => 'm--img-rounded m--marginless']) !!}
                                                 </div>
                                                 <div class="m-card-user__details">
-                                                    <span class="m-card-user__name m--font-weight-500">Mark Andre</span>
-                                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">mark.andre@gmail.com</a>
+                                                    <span class="m-card-user__name m--font-weight-500">{{ Auth::user()->name }}</span>
+                                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">{{ Auth::user()->email }}</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,22 +104,22 @@
                                             <div class="m-dropdown__content">
                                                 <ul class="m-nav m-nav--skin-light">
                                                     <li class="m-nav__item">
-                                                        <a href="#" class="m-nav__link">
+                                                        <a href="{{ route('user.edit', ['id' => Auth::user()->id ]) }}" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                             <span class="m-nav__link-title">
                                                                 <span class="m-nav__link-wrap">
                                                                     <span class="m-nav__link-text">
-                                                                        @lang('My Profile')
+                                                                        @lang('Edit Profile')
                                                                     </span>
                                                                 </span>
                                                             </span>
                                                         </a>
                                                     </li>
-
+                                                    
                                                     <li class="m-nav__separator m-nav__separator--fit">
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="#" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                                        <a href="{{ url('logout') }}" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
                                                             @lang('Logout')
                                                         </a>
                                                     </li>

@@ -5,10 +5,10 @@ use App\Models\Program;
 
 class ProgramRepository extends EloquentRepository
 {
-	public function model()
-	{
-		return Program::class;
-	}
+    public function model()
+    {
+        return Program::class;
+    }
 
     public function listProgramArray()
     {
