@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\filters\QueryFilter;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
