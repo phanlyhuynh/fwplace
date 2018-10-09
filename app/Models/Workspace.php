@@ -36,8 +36,11 @@ class Workspace extends Model
 
     public function delete()
     {
+        if ($this->users()->count() > 0) {
+            return false;
+        }
         $this->locations()->delete();
-        
+
         return parent::delete();
     }
 

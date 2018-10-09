@@ -24,10 +24,14 @@ return [
         'off' => 0,
         'all' => 1,
         'morning' => 2,
-        'afternoon' => 3
+        'afternoon' => 3,
     ],
     'prepend' => 0,
     'none_type' => 2,
     'paginate_user' => 15,
+    'calendar' => [
+        'default-color' => '"m-fc-event--primary"',
+        'off-color' => '"m-fc-event--danger"',
+    ]
 
 ];

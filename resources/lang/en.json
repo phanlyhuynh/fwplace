@@ -34,7 +34,16 @@
     "Location Calendar: ": "Location Calendar: :location",
     "Work Schedule": "Work Schedule",
     "Total Seat:": "Total Seat: :total",
-    "Morning:": "1. Morning: ",
-    "Afternoon:": "2. Afternoon: ",
-    "Fulltime:": "3. Fulltime: "
+    "Morning:": "2. Morning: ",
+    "Afternoon:": "3. Afternoon: ",
+    "Fulltime:": "1. Fulltime: ",
+    "Off:": "4. Off: ",
+    "Morning": "Morning",
+    "Afternoon": "Afternoon",
+    "Fulltime": "Fulltime",
+    "Off": "Off",
+    "Detail": "Detail",
+    "Close": "Close",
+    "Number of Employees": "Number of Employees",
+    "This workspace having employees.": "This workspace having employees."
 }
