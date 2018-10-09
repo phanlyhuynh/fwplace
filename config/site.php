@@ -21,11 +21,13 @@ return [
     'fulltime' => 1,
     'static' => 'images/',
     'shift' => [
+        'off' => 0,
         'all' => 1,
         'morning' => 2,
         'afternoon' => 3
     ],
     'prepend' => 0,
     'none_type' => 2,
+    'paginate_user' => 15,
 
 ];

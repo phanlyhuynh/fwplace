@@ -107,7 +107,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="m-card-user__details">
-                                                            <span class="m-card-user__name">{{ $user->name }}</span>
+                                                            <span class="m-card-user__name"><a href="{{ url('admin/schedule/users/' . $user->id) }}">{{ $user->name }}</a></span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -139,6 +139,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{ $users->links() }}
                     </div>
                     <!--end::Section-->
                 </div>

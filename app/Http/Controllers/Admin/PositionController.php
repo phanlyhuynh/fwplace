@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PositionFormRequest;
 use App\Repositories\PositionRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -11,10 +12,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 class PositionController extends Controller
 {
     public $positionRepository;
+    public $userRepository;
 
-    public function __construct(PositionRepository $positionRepository)
+    public function __construct(PositionRepository $positionRepository, UserRepository $userRepository)
     {
         $this->positionRepository = $positionRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -100,8 +103,16 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        $this->positionRepository->delete($id);
-        Alert::success(trans('Delete Position'), trans('Successfully!!!'));
+        $count = $this->userRepository->where('position_id' , '=', $id)->count();
+        if ($count > 0)
+        {
+            Alert::error(trans('Failed!!!'), trans('Can not delete the Position having User'));
+        }
+        else
+        {
+            $this->positionRepository->delete($id);
+            Alert::success(trans('Successfully!!!'), trans('Delete Position'));
+        }
 
         return redirect('admin/positions');
     }

@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
         Route::get('/{id}', 'WorkingScheduleController@viewByWorkplace')->name('workplace.view');
         Route::get('/{id}/get', 'WorkingScheduleController@getData')->name('workplace.get_data');
         Route::get('location/{id}', 'WorkingScheduleController@viewByLocation')->name('location.month');
+        Route::get('users/{id}', 'WorkingScheduleController@viewByUser');
+        Route::get('users/{id}/get', 'WorkingScheduleController@getDataUser');
     });
 });
 
