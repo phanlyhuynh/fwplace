@@ -116,7 +116,11 @@ class WorkspaceController extends Controller
     public function destroy($id)
     {
         $workspace = $this->workspace->delete($id);
-        alert()->success(__('Delete Workspace'), __('Successfully!!!'));
+        if ($workspace) {
+            alert()->success(__('Delete Workspace'), __('Successfully!!!'));
+        } else {
+            alert()->error(__('Delete Workspace'), __('This workspace having employees.'));
+        }
 
         return redirect()->route('workspaces.index');
     }

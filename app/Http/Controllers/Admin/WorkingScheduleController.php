@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\LocationRepository;
 use App\Repositories\WorkspaceRepository;
+use Carbon\Carbon;
 
 class WorkingScheduleController extends Controller
 {
@@ -17,16 +18,16 @@ class WorkingScheduleController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function viewByWorkplace($workplace_id)
+    public function viewByWorkplace($workspace_id)
     {
-        $workspace = $this->workspace->findOrFail($workplace_id);
+        $workspace = $this->workspace->findOrFail($workspace_id);
 
         return view('admin.work_schedules.workspace', compact('workspace'));
     }
 
-    public function getData(Request $request, $workplace_id)
+    public function getData(Request $request, $workspace_id)
     {
-        $workspace = $this->workspace->findOrFail($workplace_id);
+        $workspace = $this->workspace->findOrFail($workspace_id);
         $this->validate(
             $request,
             [
@@ -38,7 +39,7 @@ class WorkingScheduleController extends Controller
             'start' => $request->start,
             'end' => $request->end
         ];
-        $data = $this->workspace->getData($workplace_id, $dates);
+        $data = $this->workspace->getData($workspace_id, $dates);
 
         return $data;
     }
@@ -71,6 +72,23 @@ class WorkingScheduleController extends Controller
             'end' => $request->end
         ];
         $data = $this->userRepository->getDataUserTimesheet($user_id, $dates);
+
+        return $data;
+    }
+
+    public function getOneDate(Request $request, $workspace_id)
+    {
+        $workspace = $this->workspace->findOrFail($workspace_id);
+        $this->validate(
+            $request,
+            [
+                'date' => 'required|date'
+            ]
+        );
+        if (Carbon::parse($request->date)->isWeekend()) {
+            return response()->json(null);
+        }
+        $data = $this->workspace->getOneDate($workspace_id, $request->date);
 
         return $data;
     }

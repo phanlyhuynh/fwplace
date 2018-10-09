@@ -28,4 +28,9 @@ class LocationRepository extends EloquentRepository
                 ->latest()
                 ->paginate(config('database.paginate'));
     }
+
+    public function getByWorkspace($workspace_id)
+    {
+        return $this->model->where('workspace_id', $workspace_id)->pluck('name', 'id')->toArray();
+    }
 }

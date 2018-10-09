@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
         Route::get('/', 'WorkingScheduleController@chooseWorkplace')->name('workplace.list');
         Route::get('/{id}', 'WorkingScheduleController@viewByWorkplace')->name('workplace.view');
         Route::get('/{id}/get', 'WorkingScheduleController@getData')->name('workplace.get_data');
+        Route::get('/{id}/one', 'WorkingScheduleController@getOneDate')->name('workplace.get_one_date');
         Route::get('location/{id}', 'WorkingScheduleController@viewByLocation')->name('location.month');
         Route::get('users/{id}', 'WorkingScheduleController@viewByUser');
         Route::get('users/{id}/get', 'WorkingScheduleController@getDataUser');
