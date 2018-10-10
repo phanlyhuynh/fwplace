@@ -8,4 +8,9 @@ class WorkingScheduleRepository extends EloquentRepository
     {
         return \App\Models\WorkSchedule::class;
     }
+
+    public function getUserSchedule($id)
+    {
+    	return $this->model->where('user_id', $id)->pluck('shift', 'date');
+    }
 }

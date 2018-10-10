@@ -34,3 +34,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout', 'HomeController@logout');
 Route::resource('user', 'UserController')->middleware('checkUser');
+Route::get('/workschedule', 'WorkScheduleController@index');
+Route::post('/register/{id}', 'WorkScheduleController@registerWork')->name('workschedule');
