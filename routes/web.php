@@ -27,6 +27,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
         Route::get('users/{id}', 'WorkingScheduleController@viewByUser');
         Route::get('users/{id}/get', 'WorkingScheduleController@getDataUser');
     });
+    Route::group(['prefix' => 'calendar', 'as' => 'calendar.'], function () {
+        Route::get('/', 'WorkingScheduleController@chooseWorkplace')->name('workplace.list');
+        Route::get('/workplace/{id}', 'WorkingScheduleController@viewByWorkplace')->name('workplace.view');
+        Route::get('location/{id}', 'SittingCalendarController@scheduling')->name('location.view');
+    });
 });
 
 Auth::routes();

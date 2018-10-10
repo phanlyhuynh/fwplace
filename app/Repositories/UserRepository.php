@@ -33,27 +33,22 @@ class UserRepository extends EloquentRepository
     public function getDataUserTimesheet($user_id, $dates)
     {
         $user = $this->model->findOrFail($user_id);
-        $fulltime = $user->work_schedules()
-            ->select(DB::raw('date as start, "' . __('Fulltime') . '" as title'))
-            ->whereBetween('date', [$dates['start'], $dates['end']])
-            ->where('shift', config('site.shift.all'))
-            ->get()->toArray();
-        $moring = $user->work_schedules()
-            ->select(DB::raw('date as start, "' . __('Morning') . '" as title'))
-            ->whereBetween('date', [$dates['start'], $dates['end']])
-            ->where('shift', config('site.shift.morning'))
-            ->get()->toArray();
-        $afternoon = $user->work_schedules()
-            ->select(DB::raw('date as start, "' . __('Afternoon') . '" as title'))
-            ->whereBetween('date', [$dates['start'], $dates['end']])
-            ->where('shift', config('site.shift.afternoon'))
-            ->get()->toArray();
-        $off = $user->work_schedules()
-            ->select(DB::raw('date as start, "' . __('Off') . '" as title'))
-            ->whereBetween('date', [$dates['start'], $dates['end']])
-            ->where('shift', config('site.shift.off'))
-            ->get()->toArray();
+        $fulltime = $this->getByShift($user, $dates, __('Fulltime'), config('site.shift.all'), config('site.calendar.fulltime-color'));
+        $morning = $this->getByShift($user, $dates, __('Morning'), config('site.shift.morning'));
+        $afternoon = $this->getByShift($user, $dates, __('Afternoon'), config('site.shift.afternoon'), config('site.calendar.afternoon-color'));
+        $off = $this->getByShift($user, $dates, __('Off'), config('site.shift.off'), config('site.calendar.off-color'));
 
-        return array_merge($fulltime, $moring, $afternoon, $off);
+        return array_merge($fulltime, $morning, $afternoon, $off);
+    }
+
+    public function getByShift($user, $dates, $trans, $shift, $color = null)
+    {
+        $color = $color ?? config('site.calendar.default-color');
+
+        return $user->work_schedules()
+            ->select(DB::raw('date as start, "' . $trans . '" as title, ' . $color . 'as className'))
+            ->whereBetween('date', [$dates['start'], $dates['end']])
+            ->where('shift', $shift)
+            ->get()->toArray();
     }
 }

@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "metro-asset": "https://github.com/tiennguyen98/metro-asset.git",
-    "sweetalert2": "^7.28.4"
+    "sweetalert2": "^7.28.4",
+    "fieldChooser": "https://github.com/mateagar/fieldChooser.git#^1.0.6"
   }
 }

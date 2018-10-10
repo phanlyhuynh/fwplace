@@ -5,11 +5,6 @@ use DB;
 
 class WorkspaceRepository extends EloquentRepository
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->default_color = config('site.calendar.default-color');
-    }
 
     public function model()
     {
@@ -44,17 +39,17 @@ class WorkspaceRepository extends EloquentRepository
 
     public function getAllShift($workspace, $filter)
     {
-        $full_time = $this->getByShift($workspace, $filter, __('Fulltime:'), config('site.shift.all'));
+        $full_time = $this->getByShift($workspace, $filter, __('Fulltime:'), config('site.shift.all'), config('site.calendar.fulltime-color'));
         $morning = $this->getByShift($workspace, $filter, __('Morning:'), config('site.shift.morning'));
-        $afternoon = $this->getByShift($workspace, $filter, __('Afternoon:'), config('site.shift.afternoon'));
-        $off = $this->getByShift($workspace, $filter, __('Off:'), config('site.shift.off'), '"m-fc-event--danger"');
+        $afternoon = $this->getByShift($workspace, $filter, __('Afternoon:'), config('site.shift.afternoon'), config('site.calendar.afternoon-color'));
+        $off = $this->getByShift($workspace, $filter, __('Off:'), config('site.shift.off'), config('site.calendar.off-color'));
 
         return array_merge($morning, $afternoon, $full_time, $off);
     }
 
     public function getByShift($workspace, $filter, $title, $shift, $color = null)
     {
-        $color = $color ?? $this->default_color;
+        $color = $color ?? config('site.calendar.default-color');
 
         $shiftData = $workspace->work_schedules()
             ->select(DB::raw('COUNT(user_id) as total, date as start, shift, CONCAT("' . $title . '", COUNT(user_id)) as title, ' . $color . 'as className'))

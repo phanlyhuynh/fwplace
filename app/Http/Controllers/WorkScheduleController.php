@@ -25,6 +25,13 @@ class WorkScheduleController extends Controller
                     'day' => $day->format('l'),
                     'format' => $day->format('d-m-Y')
                 ];
+            } else {
+                $dates[] = [
+                    'date' => $day->format('Y-m-d'),
+                    'day' => $day->format('l'),
+                    'format' => $day->format('d-m-Y'),
+                    'weekend' => true
+                ];
             }
         }
 

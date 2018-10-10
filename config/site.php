@@ -32,6 +32,9 @@ return [
     'calendar' => [
         'default-color' => '"m-fc-event--primary"',
         'off-color' => '"m-fc-event--danger"',
+        'fulltime-color' => '"m-fc-event--success"',
+        'afternoon-color' => '"m-fc-event--warning"',
+
     ]
 
 ];

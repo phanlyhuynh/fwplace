@@ -50,4 +50,11 @@ class Workspace extends Model
         
         return $total;
     }
+
+    public function getTotalUserAttribute()
+    {
+        $total = $this->users()->count();
+        
+        return $total;
+    }
 }
