@@ -19,13 +19,19 @@
 								</thead>
 								<tbody>
 									@foreach($dates as $day)
-									<tr>
+									<tr
+                                    @isset($day['weekend'])
+                                        class="bg-secondary text-dark"
+                                    @endisset
+                                    >
 										<th scope="row">{{ $day['format'] }}</th>
 										<td>{{ $day['day'] }}</td>
 										<td>
+                                            @if(!isset($day['weekend']))
 											<div class="col-lg-4 col-md-9 col-sm-12">
 											{!! Form::select('shift[' . $day['date']  .  ']', [config('site.shift.off') => trans('Off'), config('site.shift.all') => trans('All day'), config('site.shift.morning') => trans('Morning'), config('site.shift.afternoon') => trans('Afternoon') ], $data[$day['date']] ?? null, ['class' => 'form-control']) !!}
 											</div>
+                                            @endif
 										</td>
 									</tr>
 									@endforeach

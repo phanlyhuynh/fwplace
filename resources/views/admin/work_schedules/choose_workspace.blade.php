@@ -24,7 +24,7 @@
                 </div>
                 <div class="m-portlet__body">
                     <p>
-                        @lang('Total Seat:', ['total' => $item->total_seat])
+                        @lang('Total Employees:', ['total' => $item->total_user])
                     </p>
                     {!! Html::image($item->photo, null, ['class' => 'w-100 workspace_image']) !!}
                 </div>
