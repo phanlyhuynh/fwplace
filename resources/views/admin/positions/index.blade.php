@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
-@section('title', trans('Position'))
-@section('module', trans('Position'))
+@section('title', __('Position'))
+@section('module', __('Position'))
 @section('content')
     <div class="row">
         <div class="col-xl-12">
@@ -13,10 +13,10 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ trans('Position') }}</th>
-                                    <th>{{ trans('Type') }}</th>
+                                    <th>{{ __('Position') }}</th>
+                                    <th>{{ __('Type') }}</th>
                                     <th>
-                                        <a href="{{ url('admin/positions/create') }}" class="btn m-btn--pill m-btn--air btn-secondary table-middle " data-toggle="m-tooltip" data-placement="left" data-original-title="{{ trans('Add new') }}">
+                                        <a href="{{ url('admin/positions/create') }}" class="btn m-btn--pill m-btn--air btn-secondary table-middle " data-toggle="m-tooltip" data-placement="left" data-original-title="{{ __('Add new') }}">
                                             <i class="flaticon-add"></i>
                                         </a>
                                     </th>
@@ -29,16 +29,16 @@
                                             <th scope="row">{{ $key+1 }}</th>
                                             <td>{{ $position->name }}</td>
                                             @if($position->is_fulltime == 0)
-                                                <td>{{ trans('Parttime') }}</td>
+                                                <td>{{ __('Parttime') }}</td>
                                             @else
-                                                <td>{{ trans('Fulltime') }}</td>
+                                                <td>{{ __('Fulltime') }}</td>
                                             @endif
                                             <td>
-                                                <a href="{{ url('admin/positions/' . $position->id . '/edit') }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="{{ trans('Edit') }}">
+                                                <a href="{{ url('admin/positions/' . $position->id . '/edit') }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="{{ __('Edit') }}">
                                                     <i class="flaticon-edit-1"></i>
                                                 </a>
                                                 {!! Form::open(['url' => 'admin/positions/' . $position->id, 'method' => 'DELETE', 'class' => 'd-inline']) !!}
-                                                {!! Form::button('<i class="flaticon-cancel"></i>', ['type' => 'submit', 'class' => 'btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill delete', 'data-toggle' => 'm-tooltip', 'data-placement' => 'right', 'data-original-title' => trans('Delete')]) !!}
+                                                {!! Form::button('<i class="flaticon-cancel"></i>', ['type' => 'submit', 'class' => 'btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill delete', 'data-toggle' => 'm-tooltip', 'data-placement' => 'right', 'data-original-title' => __('Delete')]) !!}
                                                 {!! Form::close() !!}
                                             </td>
                                         </tr>

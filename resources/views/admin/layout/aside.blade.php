@@ -67,7 +67,7 @@
                                     <span></span>
                                 </i>
                                 <span class="m-menu__link-text">
-                                    @lang('Add new Position')
+                                    @lang('Add Position')
                                 </span>
                             </a>
                         </li>
@@ -99,7 +99,7 @@
                                     <span></span>
                                 </i>
                                 <span class="m-menu__link-text">
-                                    @lang('Create Program')
+                                    @lang('Add Program')
                                 </span>
                             </a>
                         </li>
@@ -151,7 +151,7 @@
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('User')</span>
+                    <span class="m-menu__link-text">@lang('Employees')</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -163,7 +163,7 @@
                                     <span></span>
                                 </i>
                                 <span class="m-menu__link-text">
-                                    @lang('Add User')
+                                    @lang('Add Employee')
                                 </span>
                             </a>
                         </li>
@@ -173,7 +173,7 @@
                                     <span></span>
                                 </i>
                                 <span class="m-menu__link-text">
-                                    @lang('User List')
+                                    @lang('Employee List')
                                 </span>
                             </a>
                         </li>
@@ -181,26 +181,11 @@
                 </div>
             </li>
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                <a href="{{ route('schedule.workplace.list') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
                     <span class="m-menu__link-text">@lang('Work Schedule')</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
-                <div class="m-menu__submenu ">
-                    <span class="m-menu__arrow"></span>
-                    <ul class="m-menu__subnav">
-                        <li class="m-menu__item" aria-haspopup="true">
-                            <a href="{{ route('schedule.workplace.list') }}" class="m-menu__link ">
-                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                    <span></span>
-                                </i>
-                                <span class="m-menu__link-text">
-                                    @lang('Workspaces List')
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="{{ url('/workschedule') }}" class="m-menu__link m-menu__toggle">

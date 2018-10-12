@@ -21,6 +21,11 @@ class WorkspaceRepository extends EloquentRepository
         return $this->model->with('locations')->paginate();
     }
 
+    public function getArrayLocation($id)
+    {
+        return $this->model->findOrFail($id)->locations()->pluck('name', 'id')->toArray();
+    }
+
     public function listWorkspaceArray()
     {
         return $this->model->pluck('name', 'id')->toArray();
@@ -32,9 +37,9 @@ class WorkspaceRepository extends EloquentRepository
         if (!$workspace || !array_key_exists('start', $filter) || !array_key_exists('end', $filter)) {
             return null;
         }
-        $allShift = $this->getAllShift($workspace, $filter);
+        $all_shift = $this->getAllShift($workspace, $filter);
 
-        return $allShift;
+        return $all_shift;
     }
 
     public function getAllShift($workspace, $filter)
@@ -51,11 +56,18 @@ class WorkspaceRepository extends EloquentRepository
     {
         $color = $color ?? config('site.calendar.default-color');
 
+
         $shiftData = $workspace->work_schedules()
             ->select(DB::raw('COUNT(user_id) as total, date as start, shift, CONCAT("' . $title . '", COUNT(user_id)) as title, ' . $color . 'as className'))
             ->whereBetween('date', [$filter['start'], $filter['end']])
-            ->where('shift', $shift)
-            ->groupBy('date', 'shift', 'workspace_id')
+            ->where('shift', $shift);
+
+        if (array_key_exists('program_id', $filter) && $filter['program_id']) {
+            $get_user_by_program = DB::table('users')->where('program_id', $filter['program_id'])->pluck('id');
+            $shiftData = $shiftData->whereIn('user_id', $get_user_by_program);
+        }
+        
+        $shiftData = $shiftData->groupBy('date', 'shift', 'workspace_id')
             ->get()->toArray();
 
         return $shiftData;

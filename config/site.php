@@ -2,6 +2,14 @@
 
 return [
 
+    'langs' => [
+        1 => 'en',
+        2 => 'vi'
+    ],
+    'list-lang' => [
+        1 => 'English',
+        2 => 'Vietnamese'
+    ],
     'default-image' => 'images/default.jpg',
     'workspace' => [
         'image' => 'public/workspace/',

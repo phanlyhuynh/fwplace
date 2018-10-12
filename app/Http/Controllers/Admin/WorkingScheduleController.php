@@ -7,22 +7,33 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\LocationRepository;
 use App\Repositories\WorkspaceRepository;
+use App\Repositories\ProgramRepository;
 use Carbon\Carbon;
 
 class WorkingScheduleController extends Controller
 {
-    public function __construct(LocationRepository $locationRepository, WorkspaceRepository $workspaceRepository, UserRepository $userRepository)
+    public function __construct(
+        LocationRepository $locationRepository, 
+        WorkspaceRepository $workspaceRepository, 
+        UserRepository $userRepository, 
+        ProgramRepository $programRepository)
     {
         $this->location = $locationRepository;
         $this->workspace = $workspaceRepository;
         $this->userRepository = $userRepository;
+        $this->program = $programRepository;
     }
 
-    public function viewByWorkplace($workspace_id)
+    public function viewByWorkplace(Request $request, $workspace_id)
     {
+        $request->session()->forget('ws_program_id');
         $workspace = $this->workspace->findOrFail($workspace_id);
+        $programs = $this->program->pluck('name', 'id');
+        if ($request->has('program_id')) {
+            $request->session()->put('ws_program_id', $request->program_id);
+        }
 
-        return view('admin.work_schedules.workspace', compact('workspace'));
+        return view('admin.work_schedules.workspace', compact('workspace', 'programs'));
     }
 
     public function getData(Request $request, $workspace_id)
@@ -35,11 +46,14 @@ class WorkingScheduleController extends Controller
                 'end' => 'required'
             ]
         );
-        $dates = [
+        $filter = [
             'start' => $request->start,
             'end' => $request->end
         ];
-        $data = $this->workspace->getData($workspace_id, $dates);
+        if ($request->session()->has('ws_program_id')) {
+            $filter['program_id'] = $request->session()->get('ws_program_id');
+        }
+        $data = $this->workspace->getData($workspace_id, $filter);
 
         return $data;
     }

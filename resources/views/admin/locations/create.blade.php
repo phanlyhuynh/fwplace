@@ -25,7 +25,7 @@
                 <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeholder' => ('Location Name')]) !!}
-                    <span class="m-form__help">{{ trans('Please enter name') }}</span>
+                    <span class="m-form__help">{{ __('Please enter name') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">
@@ -33,7 +33,7 @@
                 <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     {!! Form::number('total_seat', null, ['class' => 'form-control m-input', 'placeholder' => ('Total Seat'), 'min' => 1]) !!}
-                    <span class="m-form__help">{{ trans('Please enter total seat') }}</span>
+                    <span class="m-form__help">{{ __('Please enter total seat') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">
@@ -41,7 +41,7 @@
                 <span class="text-danger">*</span>
                 <div class="col-lg-6">
                     {!! Form::select('workspace_id', $workspaces, null, ['class' => 'form-control m-input m-input--square', 'id' => 'workspace']) !!}
-                    <span class="m-form__help">{{ trans('Please select workspace') }}</span>
+                    <span class="m-form__help">{{ __('Please select workspace') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">

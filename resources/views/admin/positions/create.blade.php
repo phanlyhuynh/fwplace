@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
-@section('title', trans('Create'))
-@section('module', trans('Position'))
+@section('title', __('Create'))
+@section('module', __('Position'))
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -12,7 +12,7 @@
                                 <i class="la la-gear"></i>
                             </span>
                             <h3 class="m-portlet__head-text">
-                                {{ trans('Create new Position') }}
+                                {{ __('Create new Position') }}
                             </h3>
                         </div>
                     </div>
@@ -22,13 +22,13 @@
                 {!! Form::open(['url' => 'admin/positions', 'method' => 'POST', 'class' => 'm-form']) !!}
                 <div class="m-portlet__body">
                     <div class="form-group m-form__group">
-                        {!! Form::label('Position:') !!}
+                        {!! Form::label('Position Name') !!}
                         {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeholder' => 'Position']) !!}
                         {!! $errors->first('name', '<p class="text-danger">:message</p>') !!}
                     </div>
                     <div class="form-group m-form__group">
-                        {!! Form::label('Type:') !!}
-                        {!! Form::select('is_fulltime', [0 => trans('Partime'), 1 => trans('Fulltime')], null, ['class' => 'form-control m-input']) !!}
+                        {!! Form::label('Type') !!}
+                        {!! Form::select('is_fulltime', [0 => __('Partime'), 1 => __('Fulltime')], null, ['class' => 'form-control m-input']) !!}
                     </div>
                 </div>
                 <div class="m-portlet__foot m-portlet__foot--fit">
