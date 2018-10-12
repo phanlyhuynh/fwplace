@@ -23,12 +23,12 @@
                 {!! Form::hidden('id', $position->id) !!}
                 <div class="m-portlet__body">
                     <div class="form-group m-form__group">
-                        {!! Form::label('Position:') !!}
+                        {!! Form::label('Position') !!}
                         {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeholder' => 'Position']) !!}
                         {!! $errors->first('name', '<p class="text-danger">:message</p>') !!}
                     </div>
                     <div class="form-group m-form__group">
-                        {!! Form::label('Type:') !!}
+                        {!! Form::label('Type') !!}
                         {!! Form::select('is_fulltime', [0 => trans('Partime'), 1 => trans('Fulltime')], null, ['class' => 'form-control m-input']) !!}
                     </div>
                 </div>

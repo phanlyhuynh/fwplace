@@ -144,7 +144,7 @@ class UserController extends Controller
             $data['avatar'] = $request->avatar->hashName();
         }
         $this->userRepository->update($data, $id);
-        alert()->success(__('Edit User'), __('Successfully!!!'));
+        alert()->success(__('Edit Employee'), __('Successfully!!!'));
 
         return redirect('admin/users');
     }
@@ -158,7 +158,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->userRepository->delete($id);
-        Alert::success(trans('Delete User'), trans('Successfully'));
+        Alert::success(trans('Delete Employee'), trans('Successfully'));
 
         return redirect('admin/users');
     }

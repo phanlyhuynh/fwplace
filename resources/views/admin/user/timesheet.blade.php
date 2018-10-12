@@ -1,8 +1,8 @@
 @extends('admin.layout.master')
 
-@section('title', trans('User Timesheet'))
+@section('title', __('User Timesheet'))
 
-@section('module', trans('User Timesheet'))
+@section('module', __('User Timesheet'))
 
 @section('content')
     <div class="m-portlet">

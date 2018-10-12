@@ -1,25 +1,8 @@
 @extends('admin.layout.master')
-@section('title', trans('User'))
+@section('title', __('User'))
 @section('module')
     <div class="mr-auto">
-        <h3 class="m-subheader__title m-subheader__title--separator">{{ trans('User') }}</h3>
-        <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-            <li class="m-nav__item m-nav__item--home">
-                <a href="{{ url('admin') }}" class="m-nav__link m-nav__link--icon">
-                    <i class="m-nav__link-icon la la-home"></i>
-                </a>
-            </li>
-            <li class="m-nav__separator">-</li>
-            <li class="m-nav__item">
-                <a href="{{ url('admin/users') }}" class="m-nav__link">
-                    <span class="m-nav__link-text">{{ trans('User') }}</span>
-                </a>
-            </li>
-            <li class="m-nav__separator">-</li>
-            <li class="m-nav__item">
-                <span class="m-nav__link-text">{{ trans('List') }}</span>
-            </li>
-        </ul>
+        <h3 class="m-subheader__title m-subheader__title--separator">{{ __('Employee') }}</h3>
     </div>
 @endsection
 @section('content')
@@ -30,7 +13,7 @@
                     <div class="m-portlet__head-caption">
                         <div class="m-portlet__head-title">
                             <h3 class="m-portlet__head-text">
-                                {{ trans('User List') }}
+                                {{ __('Employee List') }}
                             </h3>
                         </div>
                     </div>
@@ -40,7 +23,7 @@
                                 <a href="{{ url('admin/users/create') }}" class="btn btn-primary m-btn m-btn--pill m-btn--custom m-btn--icon m-btn--air">
                                     <span>
                                         <i class="la la-plus"></i>
-                                        <span>{{ trans('New User') }}</span>
+                                        <span>{{ __('New User') }}</span>
                                     </span>
                                 </a>
                             </li>
@@ -51,21 +34,21 @@
                     {!! Form::open(['url' => 'admin/users', 'method' => 'GET', 'class' => 'm-form m-form--fit m--margin-bottom-20']) !!}
                         <div class="row m--margin-bottom-20">
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                {!! Form::label(trans('User')) !!}
-                                {!! Form::text('name', request('name'), ['class' => 'form-control m-input', 'placeholder' => trans('Name'), 'data-col-index' => 0]) !!}
+                                {!! Form::label(__('Employee Name')) !!}
+                                {!! Form::text('name', request('name'), ['class' => 'form-control m-input', 'placeholder' => __('Employee Name'), 'data-col-index' => 0]) !!}
                             </div>
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                {!! Form::label(trans('Program')) !!}
+                                {!! Form::label(__('Program')) !!}
                                 {!! Form::select('program_id', $programs, request('program_id'), ['class' => 'form-control m-input', 'data-col-index' => 2]) !!}
                             </div>
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                {!! Form::label(trans('Workspace')) !!}
+                                {!! Form::label(__('Workspace')) !!}
                                 {!! Form::select('workspace_id', $workspaces, request('workspace_id'), ['class' => 'form-control m-input', 'data-col-index' => 2]) !!}
                             </div>
                         </div>
                         <div class="row m--margin-bottom-20">
                             <div class="col-lg-3 m--margin-bottom-10-tablet-and-mobile">
-                                {!! Form::label(trans('Position')) !!}
+                                {!! Form::label(__('Position')) !!}
                                 {!! Form::select('position_id', $positions, request('position_id'), ['class' => 'form-control m-input', 'data-col-index' => 7]) !!}
                             </div>
                         </div>
@@ -84,12 +67,12 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ trans('Email') }}</th>
-                                    <th>{{ trans('Program') }}</th>
-                                    <th>{{ trans('Position') }}</th>
-                                    <th>{{ trans('Workspace') }}</th>
-                                    <th>{{ trans('Type') }}</th>
-                                    <th>{{ trans('status') }}</th>
+                                    <th>{{ __('Email') }}</th>
+                                    <th>{{ __('Program') }}</th>
+                                    <th>{{ __('Position') }}</th>
+                                    <th>{{ __('Workspace') }}</th>
+                                    <th>{{ __('Type') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -116,21 +99,21 @@
                                                 <td>{{ $user->position->name }}</td>
                                                 <td>{{ $user->workspace->name }}</td>
                                                 @if($user->position->is_fulltime == config('site.partime'))
-                                                    <td>{{ trans('Partime') }}</td>
+                                                    <td>{{ __('Partime') }}</td>
                                                 @else
-                                                    <td>{{ trans('Fulltime') }}</td>
+                                                    <td>{{ __('Fulltime') }}</td>
                                                 @endif
                                                 @if($user->status == config('site.disable'))
-                                                    <td>{{ trans('Disable') }}</td>
+                                                    <td>{{ __('Disabled') }}</td>
                                                 @else
-                                                    <td>{{ trans('Active') }}</td>
+                                                    <td>{{ __('Active') }}</td>
                                                 @endif
                                                 <td>
-                                                    <a href="{{ url('admin/users/' . $user->id . '/edit') }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="{{ trans('Edit') }}">
+                                                    <a href="{{ url('admin/users/' . $user->id . '/edit') }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="{{ __('Edit') }}">
                                                         <i class="flaticon-edit-1"></i>
                                                     </a>
                                                     {!! Form::open(['url' => 'admin/users/' . $user->id, 'method' => 'DELETE', 'class' => 'd-inline']) !!}
-                                                    {!! Form::button('<i class="flaticon-cancel"></i>', ['type' => 'submit', 'class' => 'btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill delete', 'data-toggle' => 'm-tooltip', 'data-placement' => 'right', 'data-original-title' => trans('Delete')]) !!}
+                                                    {!! Form::button('<i class="flaticon-cancel"></i>', ['type' => 'submit', 'class' => 'btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill delete', 'data-toggle' => 'm-tooltip', 'data-placement' => 'right', 'data-original-title' => __('Delete')]) !!}
                                                     {!! Form::close() !!}
                                                 </td>
                                             </tr>

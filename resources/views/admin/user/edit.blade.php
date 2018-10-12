@@ -1,8 +1,8 @@
 @extends('admin.layout.master')
-@section('title', trans('User'))
+@section('title', __('Employee'))
 @section('module')
     <div class="mr-auto">
-        <h3 class="m-subheader__title m-subheader__title--separator">{{ trans('User') }}</h3>
+        <h3 class="m-subheader__title m-subheader__title--separator">{{ __('Employee') }}</h3>
         <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
             <li class="m-nav__item m-nav__item--home">
                 <a href="{{ url('admin') }}" class="m-nav__link m-nav__link--icon">
@@ -12,12 +12,12 @@
             <li class="m-nav__separator">-</li>
             <li class="m-nav__item">
                 <a href="{{ url('admin/users') }}" class="m-nav__link">
-                    <span class="m-nav__link-text">{{ trans('User') }}</span>
+                    <span class="m-nav__link-text">{{ __('Employee') }}</span>
                 </a>
             </li>
             <li class="m-nav__separator">-</li>
             <li class="m-nav__item">
-                <span class="m-nav__link-text">{{ trans('Edit User') }}</span>
+                <span class="m-nav__link-text">{{ __('Edit Employee') }}</span>
             </li>
         </ul>
     </div>
@@ -28,7 +28,7 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        {{ trans('Edit User') }}
+                        {{ __('Edit User') }}
                     </h3>
                 </div>
             </div>
@@ -38,49 +38,49 @@
         <div class="m-portlet__body">
             <div class="form-group m-form__group row">
                 <div class="col-lg-6">
-                    {!! Form::label(trans('Full Name')) !!}
-                    {!! Form::text('name', $user->name, ['class' => 'form-control m-input', 'placeholder' => trans('Enter full Name')]) !!}
+                    {!! Form::label(__('Full Name')) !!}
+                    {!! Form::text('name', $user->name, ['class' => 'form-control m-input', 'placeholder' => __('Enter full Name')]) !!}
                     {!! $errors->first('name', '<p class="text-danger">:message</p>') !!}
-                    <span class="m-form__help">{{ trans('Please enter Full Name') }}</span>
+                    <span class="m-form__help">{{ __('Please enter Full Name') }}</span>
                 </div>
                 <div class="col-lg-6">
-                    {!! Form::label(trans('Email')) !!}
-                    {!! Form::email('email', null, ['class' => 'form-control m-input', 'placeholder' => trans('Enter Email')]) !!}
+                    {!! Form::label(__('Email')) !!}
+                    {!! Form::email('email', null, ['class' => 'form-control m-input', 'placeholder' => __('Enter Email')]) !!}
                     {!! $errors->first('email', '<p class="text-danger">:message</p>') !!}
-                    <span class="m-form__help">{{ trans('Please enter Email') }}</span>
+                    <span class="m-form__help">{{ __('Please enter Email') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">
                 <div class="col-lg-6">
-                    {!! Form::label(trans('Program')) !!}
+                    {!! Form::label(__('Program')) !!}
                     <div class="m-input-icon m-input-icon--right">
                         {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input']) !!}
                     </div>
-                    <span class="m-form__help">{{ trans('Please select Program') }}</span>
+                    <span class="m-form__help">{{ __('Please select Program') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">
                 <div class="col-lg-6">
-                    {!! Form::label(trans('Position')) !!}
+                    {!! Form::label(__('Position')) !!}
                     <div class="m-input-icon m-input-icon--right">
                         {!! Form::select('position_id', $positions, null, ['class' => 'form-control m-input']) !!}
                     </div>
-                    <span class="m-form__help">{{ trans('Please select Position') }}</span>
+                    <span class="m-form__help">{{ __('Please select Position') }}</span>
                 </div>
                 <div class="col-lg-6">
-                    {!! Form::label(trans('Workspace')) !!}
+                    {!! Form::label(__('Workspace')) !!}
                     <div class="m-input-icon m-input-icon--right">
                         {!! Form::select('workspace_id', $workspaces, null, ['class' => 'form-control m-input']) !!}
                     </div>
-                    <span class="m-form__help">{{ trans('Please select Workspace') }}</span>
+                    <span class="m-form__help">{{ __('Please select Workspace') }}</span>
                 </div>
             </div>
             <div class="form-group m-form__group row">
                 <div class="col-lg-6">
-                    {!! Form::label(trans('Avatar')) !!}
+                    {!! Form::label(__('Avatar')) !!}
                     <div class="custom-file">
                         {!! Form::file('avatar', ['class' => 'custom-file-input', 'id' => 'input-display']) !!}
-                        {!! Form::label(trans('Choose file'), null, ['class' => 'custom-file-label']) !!}
+                        {!! Form::label(__('Choose file'), null, ['class' => 'custom-file-label']) !!}
                         {!! $errors->first('avatar', '<p class="text-danger">:message</p>') !!}
                     </div>
                     <img src="" alt="" id="image-display" class="w-50">
@@ -91,11 +91,11 @@
             <div class="m-form__actions m-form__actions--solid">
                 <div class="row">
                     <div class="col-lg-6">
-                        {!! Form::submit(trans('Save'), ['class' => 'btn btn-primary']) !!}
-                        <a href="{{ url('admin/users') }}" class="btn btn-secondary">{{ trans('Cancel') }}</a>
+                        {!! Form::submit(__('Save'), ['class' => 'btn btn-primary']) !!}
+                        <a href="{{ url('admin/users') }}" class="btn btn-secondary">{{ __('Cancel') }}</a>
                     </div>
                     <div class="col-lg-6 m--align-right">
-                        {!! Form::reset(trans('Reset'), ['class' => 'btn btn-danger']) !!}
+                        {!! Form::reset(__('Reset'), ['class' => 'btn btn-danger']) !!}
                     </div>
                 </div>
             </div>
