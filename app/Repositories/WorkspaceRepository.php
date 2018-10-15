@@ -26,6 +26,11 @@ class WorkspaceRepository extends EloquentRepository
         return $this->model->findOrFail($id)->locations()->pluck('name', 'id')->toArray();
     }
 
+    public function getListLocation($id)
+    {
+        return $this->model->findOrFail($id)->locations;
+    }
+
     public function listWorkspaceArray()
     {
         return $this->model->pluck('name', 'id')->toArray();

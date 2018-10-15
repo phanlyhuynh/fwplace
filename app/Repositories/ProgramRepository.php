@@ -20,4 +20,9 @@ class ProgramRepository extends EloquentRepository
         return $this->model->pluck('name', 'id');
     }
 
+    public function listProgram()
+    {
+        return $this->model->pluck('name', 'id')->prepend(__('<< Program >>'), '')->toArray();
+    }
+
 }

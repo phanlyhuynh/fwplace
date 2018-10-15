@@ -25,7 +25,7 @@ class checkUser
             {
                 return $next($request);
             } else {
-                return redirect( '/admin' );
+                return redirect()->back();
             }
         } else {
             return redirect( 'register' );
