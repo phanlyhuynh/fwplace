@@ -75,6 +75,17 @@
                     <span class="m-form__help">{{ __('Please select Workspace') }}</span>
                 </div>
             </div>
+            @if (Auth::user()->role == config('site.permission.admin') && $user->role != config('site.permission.admin'))
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        {!! Form::label(trans('Role')) !!}
+                        <div class="m-input-icon m-input-icon--right">
+                            {!! Form::select('role', [config('site.permission.trainee') => trans('Trainee'), config('site.permission.trainer') => trans('Trainer'), config('site.permission.admin') => trans('Admin')], $user->role, ['class' => 'form-control m-input']) !!}
+                        </div>
+                        <span class="m-form__help">{{ trans('Please select Role') }}</span>
+                    </div>
+                </div>
+            @endif
             <div class="form-group m-form__group row">
                 <div class="col-lg-6">
                     {!! Form::label(__('Avatar')) !!}

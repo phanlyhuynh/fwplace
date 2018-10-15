@@ -20,6 +20,7 @@ class LocationController extends Controller
     {
         $this->location = $locationRepository;
         $this->workspace = $workspaceRepository;
+        $this->middleware('checkTrainer')->except('index');
     }
 
     /**

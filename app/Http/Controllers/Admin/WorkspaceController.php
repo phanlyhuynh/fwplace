@@ -15,6 +15,7 @@ class WorkspaceController extends Controller
     public function __construct(WorkspaceRepository $workspaceRepository)
     {
         $this->workspace = $workspaceRepository;
+        $this->middleware('checkTrainer')->except('index');
     }
 
     /**

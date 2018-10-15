@@ -25,7 +25,7 @@
                         <div id="loading_user" class="text-center">
                             {!! Html::image(asset(config('site.static') . 'loading.gif'), null) !!}
                         </div>
-                        <div id="m_calendar_user" data-url="{{ url('admin/schedule/users/' . $user->id . '/get') }}"></div>
+                        <div id="m_calendar_user" data-url="{{ url('schedule/users/' . $user->id . '/get') }}"></div>
                     </div>
                 </div>
             </div>

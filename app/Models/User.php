@@ -28,7 +28,8 @@ class User extends Authenticatable
         'workspace_id',
         'position_id',
         'status',
-        'lang'
+        'lang',
+        'role'
     ];
 
     /**

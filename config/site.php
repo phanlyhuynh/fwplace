@@ -34,6 +34,11 @@ return [
         'morning' => 2,
         'afternoon' => 3,
     ],
+    'permission' => [
+        'trainee' => 0,
+        'trainer' => 1,
+        'admin' => 2,
+    ],
     'prepend' => 0,
     'none_type' => 2,
     'paginate_user' => 15,
