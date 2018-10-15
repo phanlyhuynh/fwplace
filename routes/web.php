@@ -40,7 +40,7 @@ Route::group(['middleware' => 'checkLogin'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/logout', 'HomeController@logout');
     Route::resource('user', 'UserController')->middleware('checkUser');
-    Route::get('/workschedule', 'WorkScheduleController@index');
-    Route::post('/register/{id}', 'WorkScheduleController@registerWork')->name('workschedule');
+    Route::get('/workschedule-register', 'WorkScheduleController@index');
+    Route::post('/registerworkschedule', 'WorkScheduleController@registerWork')->name('workschedule');
 });
 

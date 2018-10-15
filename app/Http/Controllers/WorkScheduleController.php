@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
 use App\Repositories\WorkingScheduleRepository;
+use App\Repositories\LocationRepository;
+
 
 class WorkScheduleController extends Controller
 {
-	public function __construct(WorkingScheduleRepository $workingScheduleRepository)
-	{
-		$this->workingSchedule = $workingScheduleRepository;
-	}
+    public function __construct(WorkingScheduleRepository $workingScheduleRepository, LocationRepository $locationRepository)
+    {
+        $this->workingSchedule = $workingScheduleRepository;
+        $this->locationRepository = $locationRepository;
+    }
 
     public function index()
     {
@@ -35,26 +38,29 @@ class WorkScheduleController extends Controller
             }
         }
 
+        $locations = $this->locationRepository->getByWorkspace(Auth::user()->workspace_id);
         $data = $this->workingSchedule->getUserSchedule(Auth::user()->id);
+        $data_location = $this->workingSchedule->getLocation(Auth::user()->id);
 
-        return view('users.registerworkschedules', compact('dates', 'data') );
+        return view('users.registerworkschedules', compact('dates', 'data', 'locations', 'data_location') );
     }
 
     public function registerWork(Request $request)
     {
-    	$data = $request->all();
-    	foreach ($data['shift'] as $key => $value) {
-			$request->user()->work_schedules()->updateOrCreate(
-				[
-	    			'date' => $key,
-	    		],
-	    		[
-	    			'shift' => $value
-	    		]
-    		);
-    	}
+        $data = $request->all();
+        foreach ($data['shift'] as $key => $value) {
+            $request->user()->work_schedules()->updateOrCreate(
+                [
+                    'date' => $key,
+                ],
+                [
+                    'location_id' => $data['location'][$key],
+                    'shift' => $value
+                ]
+            );
+        }
 
-    	return redirect()->back();
+        return redirect()->back();
     }
 }
 

@@ -24,6 +24,10 @@ class Location extends Model
     {
         return $this->hasMany('App\Models\Calendar', 'location_id');
     }
+    public function workschedules()
+    {
+        return $this->hasMany('App\Models\Workschedule', 'location_id');
+    }
 
     public function getPhotoAttribute()
     {
