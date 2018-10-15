@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
     Route::resource('programs', 'ProgramController');
     Route::resource('locations', 'LocationController');
     Route::resource('users', 'UserController');
+    Route::resource('roles', 'RoleController');
     Route::group(['prefix' => 'schedule', 'as' => 'schedule.'], function () {
         Route::get('/', 'WorkingScheduleController@chooseWorkplace')->name('workplace.list');
         Route::get('/{id}', 'WorkingScheduleController@viewByWorkplace')->name('workplace.view');

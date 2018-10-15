@@ -151,7 +151,7 @@ return [
          */
 
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
+        Zizaco\Entrust\EntrustServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -215,6 +215,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+
     ],
 
 ];
