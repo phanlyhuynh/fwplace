@@ -80,6 +80,7 @@
                                 <tbody>
                                     @if(isset($users))
                                         @foreach($users as $key => $user)
+                                            @if (Auth::user()->role == config('site.permission.admin') || $user->role != config('site.permission.admin'))
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1" tabindex="0">
                                                     <div class="m-card-user m-card-user--sm">
@@ -127,6 +128,7 @@
                                                     @endif
                                                 </td>
                                             </tr>
+                                            @endif
                                         @endforeach
                                     @endif
                                 </tbody>

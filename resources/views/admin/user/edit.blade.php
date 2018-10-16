@@ -84,6 +84,13 @@
                         </div>
                         <span class="m-form__help">{{ trans('Please select Role') }}</span>
                     </div>
+                    <div class="col-lg-6">
+                        {!! Form::label(trans('Status')) !!}
+                        <div class="m-input-icon m-input-icon--right">
+                            {!! Form::select('status', [config('site.disable') => __('Disable'), config('site.active') => __('Active') ], $user->status, ['class' => 'form-control m-input']) !!}
+                        </div>
+                        <span class="m-form__help">{{ trans('Please select Status') }}</span>
+                    </div>
                 </div>
             @endif
             <div class="form-group m-form__group row">

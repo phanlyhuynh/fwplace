@@ -44,6 +44,6 @@ Route::group(['middleware' => 'checkLogin'], function () {
     Route::get('/workschedule-register', 'WorkScheduleController@index');
     Route::post('/registerworkschedule', 'WorkScheduleController@registerWork')->name('workschedule');
     Route::get('/workschedule', 'WorkScheduleController@index');
-    Route::get('schedule/users/{id}', 'Admin\WorkingScheduleController@viewByUser');
+    Route::get('schedule/users/{id}', 'Admin\WorkingScheduleController@viewByUser')->name('user.schedule');
     Route::get('schedule/users/{id}/get', 'Admin\WorkingScheduleController@getDataUser');
 });
