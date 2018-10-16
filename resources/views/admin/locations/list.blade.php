@@ -30,11 +30,13 @@
                             <th>@lang('Location Name')</th>
                             <th>@lang('Total Seat')</th>
                             <th>@lang('Workspace')</th>
-                            <th>
-                                <a href="{{ route('locations.create') }}" class="btn m-btn--pill m-btn--air btn-secondary" data-toggle="m-tooltip" data-placement="left" data-original-title="@lang('Add Location')">
-                                    <i class="flaticon-add"></i>
-                                </a>
-                            </th>
+                            @if (Auth::user()->role == config('site.permission.admin'))
+                                <th>
+                                    <a href="{{ route('locations.create') }}" class="btn m-btn--pill m-btn--air btn-secondary" data-toggle="m-tooltip" data-placement="left" data-original-title="@lang('Add Location')">
+                                        <i class="flaticon-add"></i>
+                                    </a>
+                                </th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -53,21 +55,23 @@
                                         {{ $location->workspace->name }}
                                     </button>
                                 </td>
-                                <td>
-                                    <a href="{{ route('locations.edit', ['id' => $location->id]) }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="@lang('Edit Location')">
-                                        <i class="flaticon-edit-1"></i>
-                                    </a>
-                                    {!! Form::open(['route' => ['locations.destroy', $location->id], 
-                                        'class' => 'd-inline',
-                                        'method' => 'DELETE'
-                                    ]) !!}
-                                        {!! Form::button('<i class="flaticon-cancel"></i>', [
-                                            'class' => 'delete btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill',
-                                            'type' => 'submit',
-                                            'message' => __('Delete this item?')
+                                @if (Auth::user()->role == config('site.permission.admin'))
+                                    <td>
+                                        <a href="{{ route('locations.edit', ['id' => $location->id]) }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="@lang('Edit Location')">
+                                            <i class="flaticon-edit-1"></i>
+                                        </a>
+                                        {!! Form::open(['route' => ['locations.destroy', $location->id],
+                                            'class' => 'd-inline',
+                                            'method' => 'DELETE'
                                         ]) !!}
-                                    {!! Form::close() !!}
-                                </td>
+                                            {!! Form::button('<i class="flaticon-cancel"></i>', [
+                                                'class' => 'delete btn btn-danger m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill',
+                                                'type' => 'submit',
+                                                'message' => __('Delete this item?')
+                                            ]) !!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endif
                             </tr>
                         @empty
                             @include('admin.components.alert', ['type' => 'warning', 'message' => __('Have no data!')])
