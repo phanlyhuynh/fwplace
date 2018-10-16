@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\LocationRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\WorkspaceRepository;
+use App\Repositories\ProgramRepository;
 use Carbon\CarbonPeriod;
 
 class SittingCalendarController extends Controller
@@ -15,12 +16,14 @@ class SittingCalendarController extends Controller
     public function __construct(
         LocationRepository $locationRepository, 
         UserRepository $userRepository, 
-        WorkspaceRepository $workspaceRepository
+        WorkspaceRepository $workspaceRepository,
+        ProgramRepository $programRepository
     )
     {
         $this->location = $locationRepository;
         $this->user = $userRepository;
         $this->workspace = $workspaceRepository;
+        $this->program = $programRepository;
     }
 
     public function chooseWorkplace()
@@ -38,11 +41,16 @@ class SittingCalendarController extends Controller
         return view('admin.calendar.choose_location', compact('location_list', 'workspace'));
     }
 
-    public function locationAnalystic($location_id)
+    public function locationAnalystic(Request $request, $location_id)
     {
+        $request->session()->forget('ws_program_id');
         $location = $this->location->findOrFail($location_id);
+        $programs = $this->program->listProgram();
+        if ($request->has('program_id')) {
+            $request->session()->put('ws_program_id', $request->program_id);
+        }
 
-        return view('admin.calendar.analystic', compact('location'));
+        return view('admin.calendar.analystic', compact('location', 'programs'));
     }
 
     public function getAnalysticData(Request $request, $location_id)
@@ -59,6 +67,9 @@ class SittingCalendarController extends Controller
             'start' => $request->start,
             'end' => $request->end
         ];
+        if ($request->session()->has('ws_program_id')) {
+            $filter['program_id'] = $request->session()->get('ws_program_id');
+        }
         $data = $this->location->getData($location_id, $filter);
         
         return $data;
