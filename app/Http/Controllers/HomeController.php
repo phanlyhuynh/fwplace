@@ -24,7 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        if (Auth::user()->role != config('site.permission.trainee')) {
+            return redirect()->route('calendar.workplace.list');
+        }
+        
+        return redirect()->route('user.schedule', ['id' => Auth::user()->id]);
     }
 
     public function logout()

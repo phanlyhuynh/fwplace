@@ -17,7 +17,10 @@ class checkLogin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->status == config('site.active')) {
+        if (Auth::check()) {
+            if (Auth::user()->status != config('site.active')) {
+                abort(403);
+            }
             App::setLocale(config('site.langs')[Auth::user()->lang]);
             
             return $next($request);

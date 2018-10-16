@@ -46,6 +46,7 @@
                 </div>
             </div>
             <div class="form-group m-form__group row">
+                @if(Auth::user()->role != config('site.permission.trainee'))
                 <div class="col-lg-6">
                     {!! Form::label(__('Position')) !!}
                     <div class="m-input-icon m-input-icon--right">
@@ -53,6 +54,7 @@
                     </div>
                     <span class="m-form__help">{{ __('Please select Position') }}</span>
                 </div>
+                @endif
                 <div class="col-lg-6">
                     {!! Form::label(__('Workspace')) !!}
                     <div class="m-input-icon m-input-icon--right">
