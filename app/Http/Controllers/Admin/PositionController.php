@@ -18,6 +18,7 @@ class PositionController extends Controller
     {
         $this->positionRepository = $positionRepository;
         $this->userRepository = $userRepository;
+        $this->middleware('checkTrainer')->except('index');
     }
 
     /**

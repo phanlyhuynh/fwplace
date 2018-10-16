@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'checkLogin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['checkLogin', 'CheckAdmin']], function () {
     Route::get('/', 'DashboardController@index');
     Route::resource('positions', 'PositionController');
     Route::resource('workspaces', 'WorkspaceController');
@@ -37,10 +37,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'chec
 Auth::routes();
 
 Route::group(['middleware' => 'checkLogin'], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/logout', 'HomeController@logout');
     Route::resource('user', 'UserController')->middleware('checkUser');
     Route::get('/workschedule-register', 'WorkScheduleController@index');
     Route::post('/registerworkschedule', 'WorkScheduleController@registerWork')->name('workschedule');
+    Route::get('/workschedule', 'WorkScheduleController@index');
+    Route::get('schedule/users/{id}', 'Admin\WorkingScheduleController@viewByUser');
+    Route::get('schedule/users/{id}/get', 'Admin\WorkingScheduleController@getDataUser');
 });
-

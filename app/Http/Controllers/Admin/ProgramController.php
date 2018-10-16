@@ -21,7 +21,9 @@ class ProgramController extends Controller
     public function __construct(ProgramRepository $programRepository)
     {
         $this->programRepository = $programRepository;
+        $this->middleware('checkTrainer')->except('index');
     }
+
     public function index()
     {
         $dataPrograms = $this->programRepository->model()::all();

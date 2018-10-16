@@ -29,6 +29,7 @@ class UserController extends Controller
         $this->programRepository = $programRepository;
         $this->positionRepository = $positionRepository;
         $this->workspaceRepository = $workspaceRepository;
+        $this->middleware('checkTrainer')->except('index', 'create', 'store' , 'edit' , 'update');
     }
 
     /**

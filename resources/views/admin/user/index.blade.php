@@ -67,12 +67,13 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>{{ __('Email') }}</th>
-                                    <th>{{ __('Program') }}</th>
-                                    <th>{{ __('Position') }}</th>
-                                    <th>{{ __('Workspace') }}</th>
-                                    <th>{{ __('Type') }}</th>
-                                    <th>{{ __('Status') }}</th>
+                                    <th>{{ trans('Email') }}</th>
+                                    <th>{{ trans('Program') }}</th>
+                                    <th>{{ trans('Position') }}</th>
+                                    <th>{{ trans('Workspace') }}</th>
+                                    <th>{{ trans('Type') }}</th>
+                                    <th>{{ trans('Role') }}</th>
+                                    <th>{{ trans('status') }}</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -103,7 +104,14 @@
                                                 @else
                                                     <td>{{ __('Fulltime') }}</td>
                                                 @endif
-                                                @if($user->status == config('site.disable'))
+                                                @if ($user->role == config('site.permission.trainee'))
+                                                    <td>{{ trans('Trainee') }}</td>
+                                                @elseif ($user->role == config('site.permission.trainer'))
+                                                    <td>{{ trans('Trainer') }}</td>
+                                                @else
+                                                    <td>{{ trans('Admin') }}</td>
+                                                @endif
+                                                @if ($user->status == config('site.disable'))
                                                     <td>{{ __('Disabled') }}</td>
                                                 @else
                                                     <td>{{ __('Active') }}</td>
