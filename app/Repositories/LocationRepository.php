@@ -34,7 +34,7 @@ class LocationRepository extends EloquentRepository
 
     public function getByWorkspace($workspace_id)
     {
-        return $this->model->where('workspace_id', $workspace_id)->pluck('name', 'id')->prepend(__('--Chose Location--'), '')->toArray();
+        return $this->model->where('workspace_id', $workspace_id)->pluck('name', 'id')->prepend(__('--Chose Location--'), config('site.default_location'))->toArray();
     }
 
     public function getData($location_id, $filter)
@@ -123,9 +123,13 @@ class LocationRepository extends EloquentRepository
         $shiftData = $location->work_schedules()
             ->select(DB::raw('COUNT(user_id) as total, date as start, shift'))
             ->whereBetween('date', [$filter['start'], $filter['end']])
-            ->where('shift', $shift)
-            ->groupBy('date', 'shift')
-            ->get();
+            ->where('shift', $shift);
+            
+        if (array_key_exists('program_id', $filter) && $filter['program_id']) {
+            $get_user_by_program = DB::table('users')->where('program_id', $filter['program_id'])->pluck('id');
+            $shiftData = $shiftData->whereIn('user_id', $get_user_by_program);
+        }
+        $shiftData = $shiftData->groupBy('date', 'shift')->get();
 
         return $shiftData;
     }
