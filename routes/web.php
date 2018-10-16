@@ -28,9 +28,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['che
         Route::get('users/{id}/get', 'WorkingScheduleController@getDataUser');
     });
     Route::group(['prefix' => 'calendar', 'as' => 'calendar.'], function () {
-        Route::get('/', 'WorkingScheduleController@chooseWorkplace')->name('workplace.list');
-        Route::get('/workplace/{id}', 'WorkingScheduleController@viewByWorkplace')->name('workplace.view');
-        Route::get('location/{id}', 'SittingCalendarController@scheduling')->name('location.view');
+        Route::get('/', 'SittingCalendarController@chooseWorkplace')->name('workplace.list');
+        Route::get('/workplace/{id}', 'SittingCalendarController@locationList')->name('location.list');
+        Route::get('location/{id}', 'SittingCalendarController@locationAnalystic')->name('location.view');
+        Route::get('location/{id}/analistic', 'SittingCalendarController@getAnalysticData')->name('location.get_data');
     });
 });
 

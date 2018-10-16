@@ -28,7 +28,7 @@ class WorkingScheduleController extends Controller
     {
         $request->session()->forget('ws_program_id');
         $workspace = $this->workspace->findOrFail($workspace_id);
-        $programs = $this->program->pluck('name', 'id');
+        $programs = $this->program->listProgram();
         if ($request->has('program_id')) {
             $request->session()->put('ws_program_id', $request->program_id);
         }

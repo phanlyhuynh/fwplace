@@ -13,26 +13,26 @@
                                     <tr>
                                         <th>
                                             <div class="form-group m-form__group row">
-                                                {!! Form::label('label', trans('Day'), ['class' => 'col-form-label col-lg-3']) !!}
+                                                {!! Form::label('label', __('Day'), ['class' => 'col-form-label col-lg-3']) !!}
                                             </div>
                                         </th>
                                         <th>
                                             <div class="form-group m-form__group row">
-                                                {!! Form::label('label', trans('Day of Week'), ['class' => 'col-form-label col-lg-8']) !!}
+                                                {!! Form::label('label', __('Day of Week'), ['class' => 'col-form-label col-lg-8']) !!}
                                             </div>
                                         <th>
                                             <div class="form-group m-form__group row">
-                                                {!! Form::label('label', trans('Action'), ['class' => 'col-form-label col-lg-3']) !!}
-                                            <div class="col-lg-4 col-md-9 col-sm-12">
-                                            {!! Form::select('shift', [config('site.shift.off') => trans('Off'), config('site.shift.all') => trans('All day'), config('site.shift.morning') => trans('Morning'), config('site.shift.afternoon') => trans('Afternoon') ], null, ['class' => 'form-control', 'id'=> 'select_shift']) !!}
+                                                {!! Form::label('label', __('Shift'), ['class' => 'col-form-label col-md-6 text-center']) !!}
+                                            <div class="col-md-6">
+                                            {!! Form::select('shift', [config('site.shift.off') => __('Off'), config('site.shift.all') => __('All day'), config('site.shift.morning') => __('Morning'), config('site.shift.afternoon') => __('Afternoon') ], null, ['class' => 'form-control', 'id'=> 'select_shift']) !!}
                                             </div>
                                             </div>
                                         </th>
                                         <th>
                                             <div class="form-group m-form__group row">
-                                                {!! Form::label('label', trans('Location'), ['class' => 'col-form-label col-lg-3']) !!}
-                                            <div class="col-lg-5 col-md-9 col-sm-12">
-                                                {!! Form::select('location_id', array_merge([trans('--Chose Location--')], $locations), null, ['class' => 'form-control', 'id' => 'select_location']) !!}
+                                                {!! Form::label('label', __('Location'), ['class' => 'col-form-label col-lg-6 text-center']) !!}
+                                            <div class="col-lg-6">
+                                                {!! Form::select('location_id', $locations, null, ['class' => 'form-control', 'id' => 'select_location']) !!}
                                             </div>
                                             </div>
                                         </th>
@@ -50,16 +50,12 @@
                                         <td>{{ $day['day'] }}</td>
                                         <td>
                                             @if(!isset($day['weekend']))
-                                            <div class="col-lg-6 col-md-9 col-sm-12">
-                                            {!! Form::select('shift[' . $day['date']  .  ']', [config('site.shift.off') => trans('Off'), config('site.shift.all') => trans('All day'), config('site.shift.morning') => trans('Morning'), config('site.shift.afternoon') => trans('Afternoon') ], $data[$day['date']] ?? null, ['class' => 'form-control tar', 'id' => 'sl_shift']) !!}
-                                            </div>
+                                            {!! Form::select('shift[' . $day['date']  .  ']', [config('site.shift.off') => __('Off'), config('site.shift.all') => __('All day'), config('site.shift.morning') => __('Morning'), config('site.shift.afternoon') => __('Afternoon') ], $data[$day['date']] ?? null, ['class' => 'form-control tar', 'id' => 'sl_shift']) !!}
                                             @endif
                                         </td>
                                         <td>
                                             @if(!isset($day['weekend']))
-                                            <div class="col-lg-8 col-md-9 col-sm-12">
-                                            {!! Form::select('location[' . $day['date']  .  ']', array_merge([trans('--Chose Location--')], $locations), $data_location[$day['date']] ?? null, ['class' => 'form-control target', 'id' => 'sl_location']) !!}
-                                            </div>
+                                            {!! Form::select('location[' . $day['date']  .  ']', $locations, $data_location[$day['date']] ?? null, ['class' => 'form-control target', 'id' => 'sl_location']) !!}
                                             @endif
                                         </td>
                                     </tr>

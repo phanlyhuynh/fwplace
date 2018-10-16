@@ -24,7 +24,7 @@
                 <div class="m-portlet__body">
                     {!! Form::open(['class' => 'row mb-3', 'method' => 'GET']) !!}
                         <div class="col-md-4 offset-md-6">
-                            {!! Form::select('program_id', array_merge([__('<< Program >>')], $programs), request('program_id'), ['class' => 'form-control m-input m-input--square', 'id' => 'program']) !!}
+                            {!! Form::select('program_id', $programs, request('program_id'), ['class' => 'form-control m-input m-input--square', 'id' => 'program']) !!}
                         </div>
                         <div class="col-md-2">
                             {!! Form::submit(__('Apply'), ['class' => 'btn btn-brand w-100']) !!}

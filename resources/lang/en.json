@@ -84,5 +84,7 @@
     "Location Name": "Location Name",
     "Please enter name": "Please enter name",
     "Please enter total seat": "Please enter total seat",
-    "Please select workspace": "Please select workspace"
+    "Please select workspace": "Please select workspace",
+    "1. Morning:": "1. Morning: ",
+    "2. Afternoon:": "2. Afternoon: "
 }

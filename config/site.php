@@ -48,6 +48,13 @@ return [
         'fulltime-color' => '"m-fc-event--success"',
         'afternoon-color' => '"m-fc-event--warning"',
 
-    ]
+    ],
+    'analystic' => [
+        'default-color' => 'm-fc-event--primary',
+        'total-color' => 'm-fc-event--info',
+        'fulltime-color' => 'm-fc-event--success',
+        'afternoon-color' => 'm-fc-event--warning',
+
+    ],
 
 ];
