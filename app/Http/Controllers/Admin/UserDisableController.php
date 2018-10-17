@@ -66,7 +66,7 @@ class UserDisableController extends Controller
         {
             $users->getList('position_id', $request->position_id);
         }
-        $users = $users->where('status', '=', config('site.disable'));
+        $users = $users->orderBy('created_at', 'DESC')->where('status', '=', config('site.disable'));
         $users = $users->paginate(config('site.paginate_user'));
 
         return view('admin.user.disable', compact('users', 'programs', 'positions', 'workspaces'));

@@ -17,6 +17,8 @@
                             </span>
                             <h3 class="m-portlet__head-text">
                                 {{ $location->name }}
+                                -
+                                @lang('Total Seat:', ['total' => $location->total_seat])
                             </h3>
                         </div>
                     </div>
@@ -33,9 +35,8 @@
                     {!! Form::close() !!}
                     
                     <div class="my-5 text-right">
-                        <span class="btn m-btn--pill btn-primary"></span> @lang('Total morning employees')
-                        <span class="btn m-btn--pill btn-warning ml-5"></span> @lang('Total afternoon employees')
-                        <span class="btn m-btn--pill btn-info ml-5"></span> @lang('Total Seat')
+                        <span class="btn m-btn--pill btn-primary"></span> @lang('Number of seats left in the morning')
+                        <span class="btn m-btn--pill btn-warning ml-5"></span> @lang('Number of seats left in the afternoon')
                     </div>
                     <div id="loading" class="text-center">
                         {!! Html::image(asset(config('site.static') . 'loading.gif'), null) !!}

@@ -21,7 +21,7 @@ class checkUser
         {   
             $edit_users = User::findOrFail( $request->route()->parameters('id') );
             $users = Auth::user();
-            if ($users == $edit_users[0] )
+            if ($users == $edit_users[0])
             {
                 return $next($request);
             } else {
