@@ -9,7 +9,7 @@
                     <i class="m-menu__link-icon flaticon-line-graph"></i>
                     <span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
-                            <span class="m-menu__link-text">{{ trans('Timesheet') }}</span>
+                            <span class="m-menu__link-text color-timesheet">{{ trans('Timesheet') }}</span>
                         </span>
                     </span>
                 </a>
@@ -24,7 +24,7 @@
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('Workspaces')</span>
+                    <span class="m-menu__link-text color-manager">@lang('Workspaces')</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -36,7 +36,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Add Workspace')
                                 </span>
                             </a>
@@ -47,7 +47,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Workspaces List')
                                 </span>
                             </a>
@@ -58,7 +58,7 @@
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('Position')</span>
+                    <span class="m-menu__link-text color-manager">@lang('Position')</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -70,7 +70,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Add new Position')
                                 </span>
                             </a>
@@ -81,7 +81,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Position List')
                                 </span>
                             </a>
@@ -90,16 +90,9 @@
                 </div>
             </li>
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                <a href="{{ route('calendar.workplace.list') }}" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('Seat Statistical')</span>
-                    <i class="m-menu__ver-arrow la la-angle-right"></i>
-                </a>
-            </li>
-            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('Programs')</span>
+                    <span class="m-menu__link-text color-manager">@lang('Programs')</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -111,7 +104,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Create Program')
                                 </span>
                             </a>
@@ -122,7 +115,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Program List')
                                 </span>
                             </a>
@@ -133,7 +126,7 @@
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('Locations')</span>
+                    <span class="m-menu__link-text color-manager">@lang('Locations')</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -145,7 +138,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Add Location')
                                 </span>
                             </a>
@@ -156,7 +149,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Locations List')
                                 </span>
                             </a>
@@ -167,7 +160,7 @@
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text"> @lang('Employees')</span>
+                    <span class="m-menu__link-text color-manager"> @lang('Employees')</span>
                     <i class="m-menu__ver-arrow la la-angle-right"></i>
                 </a>
                 <div class="m-menu__submenu ">
@@ -178,7 +171,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Add Employee')
                                 </span>
                             </a>
@@ -188,7 +181,7 @@
                                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                     <span></span>
                                 </i>
-                                <span class="m-menu__link-text">
+                                <span class="m-menu__link-text color-manager">
                                     @lang('Employee List')
                                 </span>
                             </a>
@@ -197,18 +190,22 @@
                 </div>
             </li>
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                <a href="{{ route('calendar.workplace.list') }}" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-interface-9"></i>
+                    <span class="m-menu__link-text color-manager">@lang('Seat Statistical')</span>
+                </a>
+            </li>
+            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="{{ route('schedule.workplace.list') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('Work Schedule')</span>
-                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                    <span class="m-menu__link-text color-manager">@lang('Work Schedule')</span>
                 </a>
             </li>
             @endif
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="{{ url('/workschedule-register') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text">@lang('Register Work Schedule')</span>
-                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                    <span class="m-menu__link-text color-manager">@lang('Register Work Schedule')</span>
                 </a>
             </li>
         </ul>
