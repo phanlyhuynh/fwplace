@@ -50,30 +50,35 @@ class LocationRepository extends EloquentRepository
 
     public function getAllShift($location, $filter)
     {
-        $full_time_seat = $this->getByShift($location, $filter, config('site.shift.all'))->pluck('total', 'start')->toArray();
-        $morning = $this->getByShift($location, $filter, config('site.shift.morning'))->pluck('total', 'start')->toArray();
-        $afternoon = $this->getByShift($location, $filter, config('site.shift.afternoon'))->pluck('total', 'start')->toArray();
-        $total = $this->getTotalSeatData($filter, __('Total Seat'), config('site.analystic.total-color'), $location->total_seat);
+        $totalSeat = $location->total_seat;
+        $fullTimeSeat = $this->getByShift($location, $filter, config('site.shift.all'))
+            ->pluck('total', 'start')
+            ->toArray();
+        $morning = $this->getByShift($location, $filter, config('site.shift.morning'))
+            ->pluck('total', 'start')
+            ->toArray();
+        $afternoon = $this->getByShift($location, $filter, config('site.shift.afternoon'))
+            ->pluck('total', 'start')
+            ->toArray();
 
-        $morning_data = $this->analystic($full_time_seat, $morning, $filter, __('1. Morning:'), config('site.analystic.default-color'));
-        $afternoon_data = $this->analystic($full_time_seat, $afternoon, $filter, __('2. Afternoon:'), config('site.analystic.afternoon-color'));
+        $morningData = $this->analystic(
+            $fullTimeSeat,
+            $morning,
+            $filter,
+            __('1. Morning:'),
+            config('site.analystic.default-color'),
+            $totalSeat
+        );
+        $afternoonData = $this->analystic(
+            $fullTimeSeat,
+            $afternoon,
+            $filter,
+            __('2. Afternoon:'),
+            config('site.analystic.afternoon-color'),
+            $totalSeat
+        );
 
-        return array_merge($morning_data, $afternoon_data, $total);
-    }
-
-    public function getTotalSeatData($filter, $title, $className, $total_seat)
-    {
-        $dates = $this->getDatesOfFilter($filter);
-        $data = [];
-        foreach ($dates as $date) {
-            $data[] = [
-                'start' => $date,
-                'title' => $title . ': ' . $total_seat,
-                'className' => $className
-            ];
-        }
-
-        return $data;
+        return array_merge($morningData, $afternoonData);
     }
 
     public function getDatesOfFilter($filter)
@@ -82,19 +87,19 @@ class LocationRepository extends EloquentRepository
             return null;
         }
         $dates = CarbonPeriod::create($filter['start'], $filter['end'])->toArray();
-        $array_dates = [];
+        $arrayDates = [];
         foreach ($dates as $date) {
             if (!$date->isWeekend()) {
-                $array_dates[] = $date->format('Y-m-d');
+                $arrayDates[] = $date->format('Y-m-d');
             }
         }
 
-        return $array_dates;
+        return $arrayDates;
     }
 
-    public function analystic($full_time_seat, $shiftData, $filter, $title, $className)
+    public function analystic($fullTimeSeat, $shiftData, $filter, $title, $className, $totalSeat)
     {
-        if (!is_array($full_time_seat) && !$shiftData) {
+        if (!is_array($fullTimeSeat) && !$shiftData) {
             return;
         }
         $dates = $this->getDatesOfFilter($filter);
@@ -105,8 +110,14 @@ class LocationRepository extends EloquentRepository
             } else {
                 $count = 0;
             }
-            if (array_key_exists($date, $full_time_seat)) {
-                $count += $full_time_seat[$date];
+            if (array_key_exists($date, $fullTimeSeat)) {
+                $count += $fullTimeSeat[$date];
+            }
+            $count = $totalSeat - $count;
+            if ($count < 0) {
+                $count = __('lacking') . $count * -1;
+            } elseif ($count >= 0) {
+                $count = __('over') . $count;
             }
             $data[] = [
                 'start' => $date,

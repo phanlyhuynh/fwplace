@@ -39,9 +39,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $programs = $this->programRepository->pluckProgram()->prepend('', config('site.prepend'));
-        $positions = $this->positionRepository->pluckPosition()->prepend('', config('site.prepend'));
-        $workspaces = $this->workspaceRepository->pluckWorkspace()->prepend('', config('site.prepend'));
+        $programs = $this->programRepository->pluckProgram()->prepend(__('Programs'), '0');
+        $positions = $this->positionRepository->pluckPosition()->prepend(__('Positions'), '0');
+        $workspaces = $this->workspaceRepository->pluckWorkspace()->prepend(__('Workspaces'), 0);
 
         return view('auth.register', compact('programs', 'positions', 'workspaces'));
     }

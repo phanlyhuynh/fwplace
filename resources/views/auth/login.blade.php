@@ -56,13 +56,11 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="m-login__form-sub">
-                                <a href="{{ url('/register') }}" class="m-link">
-                                        @lang('auth.register')
-                                </a>
-                            </div>
                             <div class="m-login__form-action">
                                 {!! Form::submit(__('auth.login'), ['class' => 'btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary']) !!}
+                                <a href="{{ url('/register') }}" class="ml-4 btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">
+                                    @lang('auth.register')
+                                </a>
                             </div>
                         {!! Form::close() !!}
                     </div>

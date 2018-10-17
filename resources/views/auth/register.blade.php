@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>@lang('auth.register')</title>
+    <title>@lang('auth.login')</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <script src="{{ asset('js/webfont.js') }}"></script>
@@ -24,60 +24,33 @@
                     </div>
                     <div class="m-login__signin">
                         <div class="m-login__head">
-                            <h3 class="m-login__title">@lang('auth.member')</h3>
+                            <h3 class="m-login__title">@lang('auth.login') Framgia Working Place</h3>
                         </div>
-                        <br><br>
-                        {!! Form::open(['url' => '/register', 'method' => 'POST', 'class' => 'm-form m-form--fit m-form--label-align-right']) !!}
-                            <div class="m-portlet__body">
-                                <div class="form-group m-form__group row">
-                                    {!! Form::label(__('Full Name'), null, ['class' => 'col-2 col-form-label']) !!}
-                                    <div class="col-10">
-                                        {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeholder' => __('Enter full Name')]) !!}
-                                        {!! $errors->first('name', '<p class="text-danger">:message</p>') !!}
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    {!! Form::label(__('Email'), null, ['class' => 'col-2 col-form-label']) !!}
-                                    <div class="col-10">
-                                        {!! Form::email('email', null, ['class' => 'form-control m-input', 'placeholder' => __('Enter Email')]) !!}     
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    {!! Form::label(__('Password'), null, ['class' => 'col-2 col-form-label']) !!}
-                                    <div class="col-10">
-                                        {!! Form::password('password', ['class' => 'form-control m-input', 'placeholder' => __('Enter Password')]) !!}
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    {!! Form::label(__('Program'), null, ['class' => 'col-2 col-form-label']) !!}
-                                    <div class="col-10">
-                                        {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input']) !!}
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    {!! Form::label(__('Position'), null, ['class' => 'col-2 col-form-label']) !!}
-                                    <div class="col-10">
-                                        {!! Form::select('position_id', $positions, null, ['class' => 'form-control m-input']) !!}
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    {!! Form::label(__('Workspace'), null, ['class' => 'col-2 col-form-label']) !!}
-                                    <div class="col-10">
-                                        {!! Form::select('workspace_id', $workspaces, null, ['class' => 'form-control m-input']) !!}
-                                    </div>
-                                </div>
+                        {!! Form::open(['url' => 'register', 'method' => 'POST', 'class' => 'm-login__form m-form']) !!}
+                            @foreach($errors->all() as $error)
+                                <p class="alert alert-danger">{{ $error }}</p>
+                            @endforeach
+                            <div class="form-group m-form__group">
+                                {!! Form::text('name', null, ['class' => 'form-control m-input', 'placeholder' => __('Enter full Name')]) !!}
+                                {!! $errors->first('name', '<p class="text-danger">:message</p>') !!}
                             </div>
-                            <br><br>
-                            <div class="m-portlet__foot m-portlet__foot--fit">
-                                <div class="m-form__actions">
-                                    <div class="row">
-                                        <div class="col-2">
-                                        </div>
-                                        <div class="col-10">
-                                            {!! Form::submit(__('Register'), ['class' => 'btn btn-success']) !!}
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="form-group m-form__group">
+                                {!! Form::email('email', null, ['class' => 'form-control m-input', 'placeholder' => __('Enter Email')]) !!}
+                            </div>
+                            <div class="form-group m-form__group">
+                                {!! Form::password('password', ['class' => 'form-control m-input', 'placeholder' => __('Enter Password')]) !!}
+                            </div>
+                            <div class="form-group mt-4">
+                                {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input']) !!}
+                            </div>
+                            <div class="form-group mt-4">
+                                {!! Form::select('position_id', $positions, null, ['class' => 'form-control m-input']) !!}
+                            </div>
+                            <div class="form-group mt-4">
+                                {!! Form::select('workspace_id', $workspaces, null, ['class' => 'form-control m-input']) !!}
+                            </div>
+                            <div class="m-login__form-action">
+                                {!! Form::submit(__('auth.register'), ['class' => 'btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary']) !!}
                             </div>
                         {!! Form::close() !!}
                     </div>
@@ -87,6 +60,9 @@
     </div>
 
     @include('admin.assets.js')
+    @include('sweetalert::alert')
+
+    @yield('js')
 
 </body>
 </html>

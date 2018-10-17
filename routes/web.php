@@ -12,7 +12,7 @@
 */
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['checkLogin', 'CheckAdmin']], function () {
-    Route::get('/', 'DashboardController@index');
+    Route::get('/', 'DashboardController@index')->name('admin.index');
     Route::resource('positions', 'PositionController');
     Route::resource('workspaces', 'WorkspaceController');
     Route::resource('programs', 'ProgramController');

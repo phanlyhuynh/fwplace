@@ -62,7 +62,7 @@ class UserController extends Controller
         {
             $users->getList('position_id', $request->position_id);
         }
-        $users = $users->paginate(config('site.paginate_user'));
+        $users = $users->orderBy('created_at', 'DESC')->paginate(config('site.paginate_user'));
 
         return view('admin.user.index', compact('users', 'programs', 'positions', 'workspaces'));
     }

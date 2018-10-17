@@ -113,9 +113,13 @@
                                                     <td>{{ trans('Admin') }}</td>
                                                 @endif
                                                 @if ($user->status == config('site.disable'))
-                                                    <td>{{ __('Disabled') }}</td>
+                                                    <td>
+                                                        <span class="btn m-btn--pill btn-danger active">{{ __('Disabled') }}</span>
+                                                    </td>
                                                 @else
-                                                    <td>{{ __('Active') }}</td>
+                                                    <td>
+                                                        <span class="btn m-btn--pill btn-primary active">{{ __('Active') }}</span>
+                                                    </td>
                                                 @endif
                                                 <td>
                                                     <a href="{{ url('admin/users/' . $user->id . '/edit') }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="{{ __('Edit') }}">

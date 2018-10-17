@@ -85,8 +85,8 @@
     "<< Program >>": "Ngôn ngữ lập trình",
     "1. Morning:": "1. Sáng: ",
     "2. Afternoon:": "2. Chiều: ",
-    "Total morning employees": "Số nhân viên đi buổi sáng",
-    "Total afternoon employees": "Số nhân viên đi buổi chiều",
+    "Number of seats left in the morning": "Số chỗ còn lại buổi sáng",
+    "Number of seats left in the afternoon": "Số chỗ còn lại buổi chiều",
     "Seat Statistical": "Thống kê chỗ ngồi",
     "Add new Position": "Thêm mới chức danh",
     "Register Work Schedules": "Đăng ký lịch làm việc",
@@ -106,5 +106,7 @@
     "Register": "Đăng ký",
     "Register Member": "Đăng ký thành viên",
     "Register Member Successfully": "Đăng ký thành viên thành công",
-    "Please Wait Active": "Chờ kích hoạt"
+    "Please Wait Active": "Chờ kích hoạt",
+    "lacking": "thiếu ",
+    "over": "còn "
 }

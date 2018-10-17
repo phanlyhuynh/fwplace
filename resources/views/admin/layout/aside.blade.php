@@ -186,6 +186,14 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                            <a href="{{ url('admin/userdisables') }}" class="m-menu__link m-menu__toggle">
+                                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                    <span></span>
+                                </i>
+                                <span class="m-menu__link-text color-manager">@lang('Employee Disable')</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -199,12 +207,6 @@
                 <a href="{{ route('schedule.workplace.list') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>
                     <span class="m-menu__link-text color-manager">@lang('Work Schedule')</span>
-                </a>
-            </li>
-            <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                <a href="{{ url('admin/userdisables') }}" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-icon flaticon-interface-9"></i>
-                    <span class="m-menu__link-text color-manager">@lang('Employee Disable')</span>
                 </a>
             </li>
             @endif

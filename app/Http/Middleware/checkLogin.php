@@ -19,7 +19,9 @@ class checkLogin
     {
         if (Auth::check()) {
             if (Auth::user()->status != config('site.active')) {
-                abort(403);
+                Auth::logout();
+                alert()->error(__('auth.register'), __('Your account has not been activated!'));
+                return redirect( '/login' );
             }
             App::setLocale(config('site.langs')[Auth::user()->lang]);
             
