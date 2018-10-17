@@ -30,9 +30,13 @@
                         <tr>
                             <th scope="row">{{ $item->id }}</th>
                             <td class="w-50">
-                                <img src="{{ $item->photo }}" alt=""  class="w-75">
+                                <img src="{{ $item->photo }}" alt="" class="size-workspace">
                             </td>
-                            <td><h5>{{ $item->name }}</h5></td>
+                            <td>
+                                <h5>
+                                    <a href="{{ url('admin/calendar/workplace/' . $item->id) }}">{{ $item->name }}</a>
+                                </h5>
+                            </td>
                             <td><h5>{{ $item->total_seat }}</h5></td>
                             @if (Auth::user()->role == config('site.permission.admin'))
                                 <td>
