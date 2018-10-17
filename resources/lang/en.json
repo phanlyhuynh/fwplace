@@ -86,5 +86,10 @@
     "Please enter total seat": "Please enter total seat",
     "Please select workspace": "Please select workspace",
     "1. Morning:": "1. Morning: ",
-    "2. Afternoon:": "2. Afternoon: "
+    "2. Afternoon:": "2. Afternoon: ",
+    "Employee Disable": "User Disable",
+    "Disable": "Disable",
+    "Role": "Role",
+    "Avatar": "Avatar",
+    "Choose file": "Choose file"
 }

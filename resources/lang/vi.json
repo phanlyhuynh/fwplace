@@ -15,7 +15,7 @@
     "Delete Workspace": "Xóa văn phòng",
     "Workspace Name": "Tên văn phòng",
     "Save": "Lưu",
-    "Reset": "Reset",
+    "Reset": "Tạo lại",
     "Choose photo": "Chọn ảnh",
     "Successfully!!!": "Thành công!!!",
     "Delete Location": "Xóa vị trí",
@@ -96,5 +96,11 @@
     "--Chose Location--": "-- Chọn vị trí --",
     "All day": "Cả ngày",
     "Create Program": "Thêm mới ngôn ngữ",
-    "User Timesheet": "Lịch làm việc"
+    "User Timesheet": "Lịch làm việc",
+    "Employee Disable": "Nhân viên chưa kích hoạt",
+    "Disable": "Chưa được kích hoạt",
+    "Role": "Vai trò",
+    "Avatar": "Ảnh đại diện",
+    "Cancel": "Hủy",
+    "Choose file": "Chọn File"
 }
