@@ -20,5 +20,7 @@ return [
     'password' => 'Password',
     'forgot' => 'Forgotten Password',
     'remember' => 'Remember Me',
+    'register' => 'Register',
+    'member' => 'Register Member',
 
 ];

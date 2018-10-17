@@ -91,5 +91,9 @@
     "Disable": "Disable",
     "Role": "Role",
     "Avatar": "Avatar",
-    "Choose file": "Choose file"
+    "Choose file": "Choose file",
+    "Register": "Register",
+    "Register Member": "Register Member",
+    "Register Member Successfully": "Register Member Successfully",
+    "Please Wait Active": "Please Wait Active"
 }

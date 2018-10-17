@@ -11,6 +11,7 @@ use App\Repositories\PositionRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\WorkspaceRepository;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -38,7 +39,11 @@ class UserController extends Controller
 
     public function index()
     {
-        
+        $programs = $this->programRepository->pluckProgram()->prepend('', config('site.prepend'));
+        $positions = $this->positionRepository->pluckPosition()->prepend('', config('site.prepend'));
+        $workspaces = $this->workspaceRepository->pluckWorkspace()->prepend('', config('site.prepend'));
+
+        return view('auth.register', compact('programs', 'positions', 'workspaces'));
     }
 
     /**
@@ -57,9 +62,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //
+        $data = $request->all();
+        $data['password'] = bcrypt($request->password);
+        $data['status'] = 0;
+        $this->userRepository->create($data);
+        Alert::success(trans('Register Member Successfully'), trans('Please Wait Active'));
+
+        return redirect('/login');
     }
 
     /**
