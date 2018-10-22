@@ -9,6 +9,7 @@ use App\Repositories\UserRepository;
 use App\Repositories\WorkspaceRepository;
 use App\Repositories\ProgramRepository;
 use Carbon\CarbonPeriod;
+use Carbon\Carbon;
 
 class SittingCalendarController extends Controller
 {
@@ -73,5 +74,24 @@ class SittingCalendarController extends Controller
         $data = $this->location->getData($location_id, $filter);
         
         return $data;
+    }
+
+    public function detailLocation(Request $request, $locationId, $date)
+    {
+        $location = $this->location->findOrFail($locationId);
+        $filter = [
+            'location_id' => $locationId,
+            'date' => $date,
+        ];
+        if ($request->has('program_id')) {
+            $filter['program_id'] = $request->program_id;
+        }
+        if ($request->has('shift')) {
+            $filter['shift'] = $request->shift;
+        }
+        $data = $this->location->getLocationDetail($filter);
+        $programs = $this->program->listProgram();
+
+        return view('admin.calendar.detailLocation', compact('data', 'location', 'date', 'programs'));
     }
 }

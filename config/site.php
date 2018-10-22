@@ -56,6 +56,12 @@ return [
         'afternoon-color' => 'm-fc-event--warning',
 
     ],
-    'default_location' => '0'
+    'default_location' => '0',
+    'shift_filter' => [
+        0 => 'All',
+        1 => 'Fulltime',
+        2 => 'Morning',
+        3 => 'Afternoon'
+    ]
 
 ];

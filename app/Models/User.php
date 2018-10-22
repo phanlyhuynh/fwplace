@@ -76,4 +76,17 @@ class User extends Authenticatable
         return $filters->apply($query);
     }
 
+    public function getShiftByDate($date)
+    {
+        $work_schedule = $this->work_schedules()
+            ->where('date', $date)
+            ->where('shift', '!=', config('site.shift.off'))
+            ->first();
+        if ($work_schedule) {
+            return config('site.shift_filter')[$work_schedule->shift];
+        }
+
+        return null;
+    }
+
 }

@@ -24,17 +24,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__body">
-
-                    {!! Form::open(['class' => 'row mb-3', 'method' => 'GET']) !!}
-                        <div class="col-md-4 offset-md-6">
-                            {!! Form::select('program_id', $programs, request('program_id'), ['class' => 'form-control m-input m-input--square', 'id' => 'program']) !!}
-                        </div>
-                        <div class="col-md-2">
-                            {!! Form::submit(__('Apply'), ['class' => 'btn btn-brand w-100']) !!}
-                        </div>
-                    {!! Form::close() !!}
-                    
-                    <div class="my-5 text-right">
+                    <div class="mb-4 text-right">
                         <span class="btn m-btn--pill btn-primary"></span> @lang('Number of seats left in the morning')
                         <span class="btn m-btn--pill btn-warning ml-5"></span> @lang('Number of seats left in the afternoon')
                     </div>

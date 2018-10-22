@@ -62,7 +62,7 @@ class WorkspaceRepository extends EloquentRepository
         $color = $color ?? config('site.calendar.default-color');
 
 
-        $shiftData = $workspace->work_schedules()
+        $shiftData = $workspace->workSchedules()
             ->select(DB::raw('COUNT(user_id) as total, date as start, shift, CONCAT("' . $title . '", COUNT(user_id)) as title, ' . $color . 'as className'))
             ->whereBetween('date', [$filter['start'], $filter['end']])
             ->where('shift', $shift);
