@@ -48,6 +48,46 @@
                 <div id="m_header_topbar" class="m-topbar m-stack m-stack--ver m-stack--general m-stack--fluid">
                     <div class="m-stack__item m-topbar__nav-wrapper">
                         <ul class="m-topbar__nav m-nav m-nav--inline">
+                            <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1" aria-expanded="true">
+                                <a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
+                                    <span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
+                                    <span class="m-nav__link-icon">
+                                    <span class="m-nav__link-icon-wrapper">
+                                        <i class="flaticon-music-2"></i>
+                                    </span>
+                                </span>
+                                </a>
+                                <div class="m-dropdown__wrapper">
+                                    <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                                    <div class="m-dropdown__inner">
+                                        <div class="m-dropdown__body">
+                                            <div class="m-dropdown__content">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active show" id="topbar_notifications_notifications" role="tabpanel">
+                                                        <div class="m-scrollable m-scroller ps" data-scrollable="true" data-height="250" data-mobile-height="200" id="notification">
+                                                            <div class="m-list-timeline m-list-timeline--skin-light">
+                                                                <div class="m-list-timeline__items">
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
+                                                                        <span class="m-list-timeline__text">12 new users registered</span>
+                                                                        <span class="m-list-timeline__time">Just now</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="ps__rail-x" id="rail-x">
+                                                                <div class="ps__thumb-x" tabindex="0"></div>
+                                                            </div>
+                                                            <div class="ps__rail-y" id="rail-y">
+                                                                <div class="ps__thumb-y" tabindex="0"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                             <li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search m-list-search--skin-light" m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown"
                             m-dropdown-persistent="1">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">

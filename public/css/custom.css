@@ -30,3 +30,27 @@ img.workspace_image {
 .fc-sat {
     background-color: #f6f6f6;
 }
+#notification {
+    height: 250px;
+    overflow: hidden;
+}
+#notification #rail-x {
+    left: 0px;
+    bottom: 0px;
+}
+#notification #rail-x .ps__thumb-x {
+    left: 0px;
+    width: 0px;
+}
+#notification #rail-y {
+    top: 0px;
+    right: 4px;
+    height: 250px;
+}
+#notification #rail-y .ps__thumb-y {
+    top: 0px;
+    height: 223px;
+}
+#m_header_nav #m_header_topbar .m-dropdown__wrapper {
+    z-index: 101;
+}
