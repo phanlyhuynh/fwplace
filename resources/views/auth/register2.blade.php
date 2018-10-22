@@ -72,6 +72,9 @@
                             <div class="m-login__form-action">
                                 {!! Form::submit(__('Register'), ['class' => 'btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary']) !!}
                             </div>
+                            <div class="m-login__form-action">
+                                <a href="{{ url('/') }}" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">@lang('Cancel')</a>
+                            </div>
                         </div>
                         {!! Form::close() !!}
                     </div>

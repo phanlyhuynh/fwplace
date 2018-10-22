@@ -18,7 +18,7 @@
             <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
                 <div class="m-login__container">
                     <div class="m-login__logo">
-                        <a href="#">
+                        <a href="{{ url('/') }}">
                             {!! Html::image(config('site.static') . 'framgia-logo.png') !!}
                         </a>
                     </div>
@@ -51,6 +51,7 @@
                             </div>
                             <div class="m-login__form-action">
                                 {!! Form::submit(__('auth.register'), ['class' => 'btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary']) !!}
+                                <a href="{{ url('/') }}" class="ml-4 btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">@lang('Cancel')</a>
                             </div>
                         {!! Form::close() !!}
                     </div>

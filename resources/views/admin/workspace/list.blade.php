@@ -13,9 +13,9 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>@lang('Workspace Photo')</th>
-                            <th>@lang('Workspace Name')</th>
+                            <th>@lang('Workspace')</th>
                             <th>@lang('Total Seat')</th>
+                            <th>@lang('Location')</th>
                             @if (Auth::user()->role == config('site.permission.admin'))
                                 <th>
                                     <a href="{{ route('workspaces.create') }}" class="btn m-btn--pill m-btn--air btn-secondary" data-toggle="m-tooltip" data-placement="left" data-original-title="@lang('Add Workspace')">
@@ -26,18 +26,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($workspaces as $item)
+                        @forelse($workspaces as $key => $item)
                         <tr>
-                            <th scope="row">{{ $item->id }}</th>
-                            <td class="w-50">
-                                <img src="{{ $item->photo }}" alt="" class="size-workspace">
+                            <th scope="row">{{ ($key+1) }}</th>
+                            <td class="sorting_1" tabindex="0">
+                                <div>
+                                    <div class="m-card-user__details">
+                                        <span class="m-card-user__name"><a href="{{ url('admin/calendar/workplace/' . $item->id) }}">{{ $item->name }}</a></span>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <span class="w-50">
+                                                <img src="{{ $item->photo }}" alt="" class="size-workspace">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
-                                <h5>
-                                    <a href="{{ url('admin/calendar/workplace/' . $item->id) }}">{{ $item->name }}</a>
-                                </h5>
+                                <h5>{{ $item->total_seat }}</h5>
                             </td>
-                            <td><h5>{{ $item->total_seat }}</h5></td>
+                            <td>
+                                @foreach($item->locations as $location)
+                                    <p>{{ $location->name }} : {{ $location->total_seat }} @lang('seat')</p>
+                                @endforeach
+                            </td>
                             @if (Auth::user()->role == config('site.permission.admin'))
                                 <td>
                                     <a href="{{ route('workspaces.edit', ['id' => $item->id]) }}" class="btn btn-warning m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill" data-toggle="m-tooltip" data-placement="left" data-original-title="@lang('Edit Workspace')">
