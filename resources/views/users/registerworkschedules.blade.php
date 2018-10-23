@@ -55,7 +55,7 @@
                                         </td>
                                         <td>
                                             @if(!isset($day['weekend']))
-                                            {!! Form::select('location[' . $day['date']  .  ']', $locations, $dataLocation[$day['date']] ?? null, ['class' => 'form-control target', 'id' => 'sl_location']) !!}
+                                            {!! Form::select('location[' . $day['date']  .  ']', [config('site.default_location') => __('--Choose--')] + $locations, $dataLocation[$day['date']] ?? null, ['class' => 'form-control target', 'id' => 'sl_location']) !!}
                                             @endif
                                         </td>
                                     </tr>
