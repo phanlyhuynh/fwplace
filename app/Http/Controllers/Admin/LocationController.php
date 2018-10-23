@@ -32,13 +32,13 @@ class LocationController extends Controller
     {
         $filter = [
             'workspace_id' => null,
-            'name' => null
+            'name' => null,
         ];
 
         if ($request->has('workspace_id') && $request->has('name')) {
             $filter = [
                 'workspace_id' => $request->workspace_id,
-                'name' => $request->name
+                'name' => $request->name,
             ];
         }
         $workspaces = $this->workspace->listWorkspaceArray();
@@ -76,7 +76,6 @@ class LocationController extends Controller
         alert()->success(__('Add Location'), __('Successfully!!!'));
 
         return redirect()->route('locations.index');
-
     }
 
     /**

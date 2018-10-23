@@ -30,3 +30,7 @@ img.workspace_image {
 .fc-sat {
     background-color: #f6f6f6;
 }
+.popover {
+    font-size: 14px !important;
+    box-shadow: 0 0 5px #5867dd;
+}

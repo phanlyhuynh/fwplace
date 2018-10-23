@@ -15,12 +15,11 @@ class SittingCalendarController extends Controller
 {
 
     public function __construct(
-        LocationRepository $locationRepository, 
-        UserRepository $userRepository, 
+        LocationRepository $locationRepository,
+        UserRepository $userRepository,
         WorkspaceRepository $workspaceRepository,
         ProgramRepository $programRepository
-    )
-    {
+    ) {
         $this->location = $locationRepository;
         $this->user = $userRepository;
         $this->workspace = $workspaceRepository;
@@ -34,18 +33,18 @@ class SittingCalendarController extends Controller
         return view('admin.calendar.choose_workspace', compact('workspaces'));
     }
 
-    public function locationList($workspace_id)
+    public function locationList($workspaceId)
     {
-        $workspace = $this->workspace->findOrFail($workspace_id);
-        $location_list = $this->workspace->getListLocation($workspace_id);
+        $workspace = $this->workspace->findOrFail($workspaceId);
+        $locationList = $this->workspace->getListLocation($workspaceId);
 
-        return view('admin.calendar.choose_location', compact('location_list', 'workspace'));
+        return view('admin.calendar.choose_location', compact('locationList', 'workspace'));
     }
 
-    public function locationAnalystic(Request $request, $location_id)
+    public function locationAnalystic(Request $request, $locationId)
     {
         $request->session()->forget('ws_program_id');
-        $location = $this->location->findOrFail($location_id);
+        $location = $this->location->findOrFail($locationId);
         $programs = $this->program->listProgram();
         if ($request->has('program_id')) {
             $request->session()->put('ws_program_id', $request->program_id);
@@ -54,24 +53,24 @@ class SittingCalendarController extends Controller
         return view('admin.calendar.analystic', compact('location', 'programs'));
     }
 
-    public function getAnalysticData(Request $request, $location_id)
+    public function getAnalysticData(Request $request, $locationId)
     {
-        $location = $this->location->findOrFail($location_id);
+        $location = $this->location->findOrFail($locationId);
         $this->validate(
             $request,
             [
                 'start' => 'required',
-                'end' => 'required'
+                'end' => 'required',
             ]
         );
         $filter = [
             'start' => $request->start,
-            'end' => $request->end
+            'end' => $request->end,
         ];
         if ($request->session()->has('ws_program_id')) {
             $filter['program_id'] = $request->session()->get('ws_program_id');
         }
-        $data = $this->location->getData($location_id, $filter);
+        $data = $this->location->getData($locationId, $filter);
         
         return $data;
     }

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class checkTrainer
+class CheckTrainer
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,7 @@ class checkTrainer
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role != config('site.permission.admin'))
-        {
+        if (Auth::user()->role != config('site.permission.admin')) {
             return redirect('/');
         }
 

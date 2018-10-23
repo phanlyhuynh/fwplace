@@ -23,7 +23,7 @@ class WorkingScheduleTableSeeder extends Seeder
                         $user->work_schedules()->create([
                             'date' => $day->format('Y-m-d'),
                             'shift' => collect([1, 2, 3])->random(),
-                            'location_id' => Location::get()->random()->id
+                            'location_id' => $user->workspace->locations->random()->id
                         ]);
                     }
                 }

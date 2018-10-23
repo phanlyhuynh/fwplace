@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
-class checkUser
+class CheckUser
 {
     /**
      * Handle an incoming request.
@@ -17,18 +17,16 @@ class checkUser
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check())
-        {   
-            $edit_users = User::findOrFail( $request->route()->parameters('id') );
+        if (Auth::check()) {
+            $editUser = User::findOrFail($request->route()->parameters('id'));
             $users = Auth::user();
-            if ($users == $edit_users[0])
-            {
+            if ($users == $editUser[0]) {
                 return $next($request);
             } else {
                 return redirect()->back();
             }
         } else {
-            return redirect( 'register' );
+            return redirect('register');
         }
     }
 }

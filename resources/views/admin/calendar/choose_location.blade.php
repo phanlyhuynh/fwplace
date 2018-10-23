@@ -7,7 +7,7 @@
 @section('content')
 <div class="m-content">
     <div class="row">
-        @forelse($location_list as $item)
+        @forelse($locationList as $item)
         <div class="col-lg-6">
             <div class="m-portlet m-portlet--success m-portlet--head-solid-bg m-portlet--head-sm" m-portlet="true" id="m_portlet_tools_2">
                 <div class="m-portlet__head">

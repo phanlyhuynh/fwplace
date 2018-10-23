@@ -27,7 +27,8 @@ class ProgramController extends Controller
     public function index()
     {
         $dataPrograms = $this->programRepository->model()::all();
-        return view('admin.programs.index', compact( 'dataPrograms' ) );
+
+        return view('admin.programs.index', compact('dataPrograms'));
     }
 
     /**
@@ -50,7 +51,7 @@ class ProgramController extends Controller
     {
         $this->programRepository->create($request->all());
 
-        Alert::success(trans('Created Program'), trans('Successfully!!!') );
+        Alert::success(trans('Created Program'), trans('Successfully!!!'));
 
         return redirect()->route('programs.index');
     }
@@ -76,7 +77,7 @@ class ProgramController extends Controller
     {
         $pro = $this->programRepository->findOrFail($id);
 
-        return view('admin.programs.edit', compact('pro') );
+        return view('admin.programs.edit', compact('pro'));
     }
 
     /**
@@ -88,9 +89,9 @@ class ProgramController extends Controller
      */
     public function update(ProgramRequest $request, $id)
     {
-        $this->programRepository->update($request->all(), $id );
+        $this->programRepository->update($request->all(), $id);
 
-        Alert::success(trans('Edit Program'), trans('Successfully!!!') );
+        Alert::success(trans('Edit Program'), trans('Successfully!!!'));
 
         return redirect()->route('programs.index');
     }
@@ -105,7 +106,7 @@ class ProgramController extends Controller
     {
         $this->programRepository->delete($id);
 
-        Alert::success(trans('Delete Program'), trans('Successfully!!!') );
+        Alert::success(trans('Delete Program'), trans('Successfully!!!'));
 
         return redirect()->route('programs.index');
     }

@@ -27,7 +27,7 @@ class LocationAddRequest extends FormRequest
             'name' => 'required|max:191|unique:locations,name,NULL,id,workspace_id,' . $this->workspace_id,
             'total_seat' => 'required|min:1|max:1000|numeric',
             'workspace_id' => 'required|exists:workspaces,id',
-            'image' => 'image|nullable'
+            'image' => 'image|nullable',
         ];
     }
 }

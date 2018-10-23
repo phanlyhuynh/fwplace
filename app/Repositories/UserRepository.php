@@ -15,21 +15,44 @@ class UserRepository extends EloquentRepository
 
     public function getListName($name)
     {
-        return $this->model->where('name', 'like','%' . $name . '%');
+        return $this->model->where('name', 'like', '%' . $name . '%');
     }
 
-    public function getList($field, $field_id)
+    public function getList($field, $fieldId)
     {
-        return $this->model->where($field, '=', $field_id);
+        return $this->model->where($field, '=', $fieldId);
     }
 
-    public function getDataUserTimesheet($user_id, $dates)
+    public function getDataUserTimesheet($userId, $dates)
     {
-        $user = $this->model->findOrFail($user_id);
-        $fulltime = $this->getByShift($user, $dates, '-' . __('Fulltime'), config('site.shift.all'), config('site.calendar.fulltime-color'));
-        $morning = $this->getByShift($user, $dates, '-' . __('Morning'), config('site.shift.morning'));
-        $afternoon = $this->getByShift($user, $dates, '-' . __('Afternoon'), config('site.shift.afternoon'), config('site.calendar.afternoon-color'));
-        $off = $this->getByShift($user, $dates, '-' . __('Off'), config('site.shift.off'), config('site.calendar.off-color'));
+        $user = $this->model->findOrFail($userId);
+        $fulltime = $this->getByShift(
+            $user,
+            $dates,
+            '-' . __('Fulltime'),
+            config('site.shift.all'),
+            config('site.calendar.fulltime-color')
+        );
+        $morning = $this->getByShift(
+            $user,
+            $dates,
+            '-' . __('Morning'),
+            config('site.shift.morning')
+        );
+        $afternoon = $this->getByShift(
+            $user,
+            $dates,
+            '-' . __('Afternoon'),
+            config('site.shift.afternoon'),
+            config('site.calendar.afternoon-color')
+        );
+        $off = $this->getByShift(
+            $user,
+            $dates,
+            '-' . __('Off'),
+            config('site.shift.off'),
+            config('site.calendar.off-color')
+        );
         $locations = $this->getLocationByDay($user, $dates);
 
         return array_merge($fulltime, $morning, $afternoon, $off, $locations);
@@ -39,7 +62,7 @@ class UserRepository extends EloquentRepository
     {
         $color = $color ?? config('site.calendar.default-color');
 
-        return $user->work_schedules()
+        return $user->workSchedules()
             ->select(DB::raw('date as start, "' . $trans . '" as title, ' . $color . 'as className'))
             ->whereBetween('date', [$dates['start'], $dates['end']])
             ->where('shift', $shift)
@@ -50,13 +73,13 @@ class UserRepository extends EloquentRepository
     {
         $color = $color ?? config('site.calendar.default-color');
 
-        $data = $user->work_schedules()
+        $data = $user->workSchedules()
             ->select(DB::raw('date as start, location_id, shift'))
             ->whereBetween('date', [$dates['start'], $dates['end']])
             ->get();
 
         if ($data->count() <= 0) {
-            return;
+            return [];
         }
         $locationByDay = [];
         foreach ($data as $item) {
@@ -65,7 +88,7 @@ class UserRepository extends EloquentRepository
                 $locationByDay[] = [
                     'start' => $item->start,
                     'title' => __('Location') . ': ' . $location->name,
-                    'className' => $color
+                    'className' => $color,
                 ];
             }
         }
