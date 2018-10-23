@@ -32,7 +32,9 @@
                             <td class="sorting_1" tabindex="0">
                                 <div>
                                     <div class="m-card-user__details">
-                                        <span class="m-card-user__name"><a href="{{ url('admin/calendar/workplace/' . $item->id) }}">{{ $item->name }}</a></span>
+                                        <h3 class="m-card-user__name">
+                                            <a href="{{ url('admin/calendar/workplace/' . $item->id) }}">{{ $item->name }}</a>
+                                        </h3>
                                     </div>
                                     <div>
                                         <div>

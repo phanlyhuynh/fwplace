@@ -41,5 +41,7 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/location.js') }}"></script>
+<script src="{{ asset('js/calendar.js') }}"></script>
 @endsection
+
+@section('additional_body_class', 'm-brand--minimize m-aside-left--minimize')

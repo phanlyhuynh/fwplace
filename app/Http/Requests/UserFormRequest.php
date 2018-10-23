@@ -31,7 +31,7 @@ class UserFormRequest extends FormRequest
         if ($this->id) {
             $rules = [
                 'name' => 'required|min:3|max:255',
-                'email' => 'required|unique:users,email,' . $this->id
+                'email' => 'required|unique:users,email,' . $this->id,
             ];
         }
 

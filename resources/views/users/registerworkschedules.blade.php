@@ -32,7 +32,7 @@
                                             <div class="form-group m-form__group row">
                                                 {!! Form::label('label', __('Location'), ['class' => 'col-form-label col-lg-6 text-center']) !!}
                                             <div class="col-lg-6">
-                                                {!! Form::select('location_id', $locations, null, ['class' => 'form-control', 'id' => 'select_location']) !!}
+                                                {!! Form::select('location_id', [config('site.default_location') => __('--Choose--')] + $locations, null, ['class' => 'form-control', 'id' => 'select_location']) !!}
                                             </div>
                                             </div>
                                         </th>
@@ -55,7 +55,7 @@
                                         </td>
                                         <td>
                                             @if(!isset($day['weekend']))
-                                            {!! Form::select('location[' . $day['date']  .  ']', $locations, $data_location[$day['date']] ?? null, ['class' => 'form-control target', 'id' => 'sl_location']) !!}
+                                            {!! Form::select('location[' . $day['date']  .  ']', $locations, $dataLocation[$day['date']] ?? null, ['class' => 'form-control target', 'id' => 'sl_location']) !!}
                                             @endif
                                         </td>
                                     </tr>

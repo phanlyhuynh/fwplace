@@ -52,7 +52,7 @@ class WorkspaceController extends Controller
             $request,
             [
                 'name' => 'required|min:1|max:191|unique:workspaces,name',
-                'image' => 'image|required'
+                'image' => 'image|required',
             ]
         );
         $data = $request->all();
@@ -93,7 +93,7 @@ class WorkspaceController extends Controller
             $request,
             [
                 'name' => 'required|min:1|max:191|unique:workspaces,name,' . $workspace->id,
-                'image' => 'image'
+                'image' => 'image',
             ]
         );
         $data = $request->all();

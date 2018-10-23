@@ -6,7 +6,7 @@ use Closure;
 use Auth;
 use App;
 
-class checkLogin
+class CheckLogin
 {
     /**
      * Handle an incoming request.
@@ -21,13 +21,14 @@ class checkLogin
             if (Auth::user()->status != config('site.active')) {
                 Auth::logout();
                 alert()->error(__('auth.register'), __('Your account has not been activated!'));
-                return redirect( '/login' );
+
+                return redirect('/login');
             }
             App::setLocale(config('site.langs')[Auth::user()->lang]);
             
             return $next($request);
         } else {
-            return redirect( '/login' );
+            return redirect('/login');
         }
     }
 }

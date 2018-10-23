@@ -29,7 +29,7 @@ class User extends Authenticatable
         'position_id',
         'status',
         'lang',
-        'role'
+        'role',
     ];
 
     /**
@@ -38,7 +38,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     public function program()
@@ -56,15 +57,14 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Position');
     }
 
-    public function work_schedules()
+    public function workSchedules()
     {
         return $this->hasMany('App\Models\WorkSchedule', 'user_id');
     }
 
     public function getAvatarUserAttribute()
     {
-        if ($this->avatar)
-        {
+        if ($this->avatar) {
             return asset(config('site.user.display-image') . $this->avatar);
         }
 
@@ -78,15 +78,14 @@ class User extends Authenticatable
 
     public function getShiftByDate($date)
     {
-        $work_schedule = $this->work_schedules()
+        $workSchedule = $this->workSchedules()
             ->where('date', $date)
             ->where('shift', '!=', config('site.shift.off'))
             ->first();
-        if ($work_schedule) {
-            return config('site.shift_filter')[$work_schedule->shift];
+        if ($workSchedule) {
+            return config('site.shift_filter')[$workSchedule->shift];
         }
 
         return null;
     }
-
 }

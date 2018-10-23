@@ -104,13 +104,10 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        $count = $this->userRepository->where('position_id' , '=', $id)->count();
-        if ($count > 0)
-        {
+        $count = $this->userRepository->where('position_id', '=', $id)->count();
+        if ($count > 0) {
             Alert::error(trans('Failed!!!'), trans('Can not delete the Position having User'));
-        }
-        else
-        {
+        } else {
             $this->positionRepository->delete($id);
             Alert::success(trans('Successfully!!!'), trans('Delete Position'));
         }

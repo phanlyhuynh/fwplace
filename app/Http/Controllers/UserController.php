@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\UserFormRequest;
 use App\Models\Position;
 use App\Models\Program;
@@ -29,8 +28,12 @@ class UserController extends Controller
     protected $positionRepository;
     protected $workspaceRepository;
 
-    public function __construct(UserRepository $userRepository, ProgramRepository $programRepository, PositionRepository $positionRepository, WorkspaceRepository $workspaceRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        ProgramRepository $programRepository,
+        PositionRepository $positionRepository,
+        WorkspaceRepository $workspaceRepository
+    ) {
         $this->userRepository = $userRepository;
         $this->programRepository = $programRepository;
         $this->positionRepository = $positionRepository;

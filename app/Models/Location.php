@@ -12,7 +12,7 @@ class Location extends Model
         'name',
         'total_seat',
         'image',
-        'workspace_id'
+        'workspace_id',
     ];
 
     public function workspace()
@@ -24,7 +24,7 @@ class Location extends Model
     {
         return $this->hasMany('App\Models\Calendar', 'location_id');
     }
-    public function work_schedules()
+    public function workSchedules()
     {
         return $this->hasMany('App\Models\WorkSchedule', 'location_id');
     }

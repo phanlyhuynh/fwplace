@@ -35,7 +35,10 @@ class LocationRepository extends EloquentRepository
 
     public function getByWorkspace($workspaceId)
     {
-        return $this->model->where('workspace_id', $workspaceId)->pluck('name', 'id')->prepend(__('--Chose Location--'), config('site.default_location'))->toArray();
+        return $this->model
+            ->where('workspace_id', $workspaceId)
+            ->pluck('name', 'id')
+            ->toArray();
     }
 
     public function getData($locationId, $filter)
@@ -108,8 +111,7 @@ class LocationRepository extends EloquentRepository
         $className,
         $totalSeat,
         $location
-    )
-    {
+    ) {
         if (!is_array($fullTimeSeat) && !$shiftData) {
             return;
         }
@@ -126,21 +128,22 @@ class LocationRepository extends EloquentRepository
             }
             $count = $totalSeat - $count;
             if ($count < 0) {
-                $count = __('lacking') . $count * -1;
+                $count = __('lacking') . ' ' . $count * -1;
             } elseif ($count >= 0) {
-                $count = __('over') . $count;
+                $count = __('over') . ' ' . $count;
             }
             $data[] = [
                 'start' => $date,
                 'title' => $title . ' ' . $count,
                 'className' => $className,
                 'url' => route(
-                    'calendar.location.detail_location', 
+                    'calendar.location.detail_location',
                     [
-                        'id' => $location->id, 
+                        'id' => $location->id,
                         'date' => $date,
                     ]
-                ) . '?shift=' . $filter['shift']
+                ) . '?shift=' . $filter['shift'],
+                'description' => __('Click to view detail'),
             ];
         }
 
@@ -149,7 +152,7 @@ class LocationRepository extends EloquentRepository
 
     public function getByShift($location, $filter, $shift)
     {
-        $shiftData = $location->work_schedules()
+        $shiftData = $location->workSchedules()
             ->select(DB::raw('COUNT(user_id) as total, date as start, shift'))
             ->whereBetween('date', [$filter['start'], $filter['end']])
             ->where('shift', $shift);
@@ -169,14 +172,14 @@ class LocationRepository extends EloquentRepository
             return null;
         }
         $location = $this->model->findOrFail($filter['location_id']);
-        $listUserId = $location->work_schedules()
+        $listUserId = $location->workSchedules()
             ->where('date', $filter['date']);
         if (array_key_exists('shift', $filter) && $filter['shift'] != 0) {
             $listUserId = $listUserId->whereIn(
-                'shift', 
+                'shift',
                 [
-                    $filter['shift'], 
-                    config('site.shift.all')
+                    $filter['shift'],
+                    config('site.shift.all'),
                 ]
             );
         }

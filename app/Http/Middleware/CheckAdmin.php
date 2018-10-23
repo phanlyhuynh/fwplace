@@ -16,8 +16,8 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->role == config('site.permission.admin') || Auth::user()->role == config('site.permission.trainer'))
-        {
+        if (Auth::user()->role == config('site.permission.admin')
+            || Auth::user()->role == config('site.permission.trainer')) {
             return $next($request);
         }
 
