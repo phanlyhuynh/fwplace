@@ -17,7 +17,8 @@ class WorkSchedule extends Model
     {
         return $this->belongsTo('App\User');
     }
-     public function location()
+    
+    public function location()
     {
         return $this->belongsTo('App\Models\Location');
     }

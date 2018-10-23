@@ -8,8 +8,8 @@ class Workspace extends Model
 {
 
     protected $fillable = [
-        'name', 
-        'image'
+        'name',
+        'image',
     ];
 
     protected $guarded = ['id'];
@@ -29,7 +29,7 @@ class Workspace extends Model
         return asset(config('site.workspace.display-image') . $this->image);
     }
 
-    public function work_schedules()
+    public function workSchedules()
     {
         return $this->hasManyThrough('App\Models\WorkSchedule', 'App\User');
     }

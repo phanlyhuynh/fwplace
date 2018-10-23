@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use DB;
 use Carbon\CarbonPeriod;
+use App\User;
 
 class LocationRepository extends EloquentRepository
 {
@@ -32,20 +33,20 @@ class LocationRepository extends EloquentRepository
                 ->paginate(config('database.paginate'));
     }
 
-    public function getByWorkspace($workspace_id)
+    public function getByWorkspace($workspaceId)
     {
-        return $this->model->where('workspace_id', $workspace_id)->pluck('name', 'id')->prepend(__('--Chose Location--'), config('site.default_location'))->toArray();
+        return $this->model->where('workspace_id', $workspaceId)->pluck('name', 'id')->prepend(__('--Chose Location--'), config('site.default_location'))->toArray();
     }
 
-    public function getData($location_id, $filter)
+    public function getData($locationId, $filter)
     {
-        $location = $this->model->findOrFail($location_id);
+        $location = $this->model->findOrFail($locationId);
         if (!array_key_exists('start', $filter) || !array_key_exists('end', $filter)) {
             return null;
         }
-        $all_shift = $this->getAllShift($location, $filter);
+        $allShift = $this->getAllShift($location, $filter);
 
-        return $all_shift;
+        return $allShift;
     }
 
     public function getAllShift($location, $filter)
@@ -64,18 +65,20 @@ class LocationRepository extends EloquentRepository
         $morningData = $this->analystic(
             $fullTimeSeat,
             $morning,
-            $filter,
+            array_merge($filter, ['shift' => config('site.shift.morning')]),
             __('1. Morning:'),
             config('site.analystic.default-color'),
-            $totalSeat
+            $totalSeat,
+            $location
         );
         $afternoonData = $this->analystic(
             $fullTimeSeat,
             $afternoon,
-            $filter,
+            array_merge($filter, ['shift' => config('site.shift.afternoon')]),
             __('2. Afternoon:'),
             config('site.analystic.afternoon-color'),
-            $totalSeat
+            $totalSeat,
+            $location
         );
 
         return array_merge($morningData, $afternoonData);
@@ -97,7 +100,15 @@ class LocationRepository extends EloquentRepository
         return $arrayDates;
     }
 
-    public function analystic($fullTimeSeat, $shiftData, $filter, $title, $className, $totalSeat)
+    public function analystic(
+        $fullTimeSeat,
+        $shiftData,
+        $filter,
+        $title,
+        $className,
+        $totalSeat,
+        $location
+    )
     {
         if (!is_array($fullTimeSeat) && !$shiftData) {
             return;
@@ -122,7 +133,14 @@ class LocationRepository extends EloquentRepository
             $data[] = [
                 'start' => $date,
                 'title' => $title . ' ' . $count,
-                'className' => $className
+                'className' => $className,
+                'url' => route(
+                    'calendar.location.detail_location', 
+                    [
+                        'id' => $location->id, 
+                        'date' => $date,
+                    ]
+                ) . '?shift=' . $filter['shift']
             ];
         }
 
@@ -137,11 +155,38 @@ class LocationRepository extends EloquentRepository
             ->where('shift', $shift);
             
         if (array_key_exists('program_id', $filter) && $filter['program_id']) {
-            $get_user_by_program = DB::table('users')->where('program_id', $filter['program_id'])->pluck('id');
-            $shiftData = $shiftData->whereIn('user_id', $get_user_by_program);
+            $getUserByProGram = DB::table('users')->where('program_id', $filter['program_id'])->pluck('id');
+            $shiftData = $shiftData->whereIn('user_id', $getUserByProGram);
         }
         $shiftData = $shiftData->groupBy('date', 'shift')->get();
 
         return $shiftData;
+    }
+
+    public function getLocationDetail($filter)
+    {
+        if (!is_array($filter) || !array_key_exists('location_id', $filter) || !array_key_exists('date', $filter)) {
+            return null;
+        }
+        $location = $this->model->findOrFail($filter['location_id']);
+        $listUserId = $location->work_schedules()
+            ->where('date', $filter['date']);
+        if (array_key_exists('shift', $filter) && $filter['shift'] != 0) {
+            $listUserId = $listUserId->whereIn(
+                'shift', 
+                [
+                    $filter['shift'], 
+                    config('site.shift.all')
+                ]
+            );
+        }
+        $listUserId = $listUserId->pluck('user_id');
+        $users = User::whereIn('id', $listUserId);
+        if (array_key_exists('program_id', $filter) && $filter['program_id']) {
+            $users = $users->where('program_id', $filter['program_id']);
+        }
+        $data = $users->orderBy('program_id')->paginate(config('database.paginate'));
+
+        return $data;
     }
 }
