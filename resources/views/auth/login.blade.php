@@ -18,7 +18,7 @@
             <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
                 <div class="m-login__container">
                     <div class="m-login__logo">
-                        <a href="#">
+                        <a href="{{ url('/') }}">
                             {!! Html::image(config('site.static') . 'framgia-logo.png') !!}
                         </a>
                     </div>
