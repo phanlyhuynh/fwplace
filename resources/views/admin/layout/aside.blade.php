@@ -197,6 +197,14 @@
                     </ul>
                 </div>
             </li>
+            @if (Auth::user()->role == config('site.permission.trainer'))
+                <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+                    <a href="{{ url('admin/traineelists/' . Auth::user()->id) }}" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon flaticon-interface-9"></i>
+                        <span class="m-menu__link-text color-manager">@lang('Trainee List')</span>
+                    </a>
+                </li>
+            @endif
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="{{ route('calendar.workplace.list') }}" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-interface-9"></i>

@@ -33,7 +33,7 @@
                 <div class="col-lg-6">
                     {!! Form::label(__('Program')) !!}
                     <div class="m-input-icon m-input-icon--right">
-                        {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input']) !!}
+                        {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input', 'id' => 'select_program', 'url' => route('get_trainer_by_program')]) !!}
                     </div>
                     <span class="m-form__help">{{ __('Please select Program') }}</span>
                 </div>
@@ -62,6 +62,14 @@
                     </div>
                     <span class="m-form__help">{{ __('Please select Workspace') }}</span>
                 </div>
+                @if (Auth::user()->role == config('site.permission.trainee'))
+                    <div class="col-lg-6">
+                        {!! Form::label(__('Trainer')) !!}
+                        <div class="m-input-icon m-input-icon--right">
+                            {!! Form::select('trainer_id', [__('Trainer')] + $trainers, $user->trainer->id ?? null, ['class' => 'form-control m-input', 'id' => 'select_trainer']) !!}
+                        </div>
+                    </div>
+                @endif
             </div>
             <div class="form-group m-form__group row">
                 <div class="col-lg-6">
@@ -92,4 +100,8 @@
         </div>
         {!! Form::close() !!}
     </div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/all.js') }}"></script>
 @endsection

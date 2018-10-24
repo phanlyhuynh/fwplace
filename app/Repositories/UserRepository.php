@@ -95,4 +95,19 @@ class UserRepository extends EloquentRepository
 
         return $locationByDay;
     }
+
+    public function getListTrainee($id)
+    {
+        $trainee = $this->model->where('trainer_id', '=', $id)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(config('site.paginate_user'));
+
+        return $trainee;
+    }
+
+    public function getSelectTrainer($programId)
+    {
+        return $this->model->where('role', '=', config('site.permission.trainer'))
+            ->where('program_id', '=', $programId)->pluck('name', 'id')->toArray();
+    }
 }

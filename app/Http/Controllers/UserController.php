@@ -99,8 +99,9 @@ class UserController extends Controller
         $positions = $this->positionRepository->listpositionArray();
         $workspaces = $this->workspaceRepository->listWorkspaceArray();
         $user = $this->userRepository->findOrFail($id);
+        $trainers = $this->userRepository->getSelectTrainer($user->program_id);
 
-        return view('users.edit', compact('positions', 'programs', 'workspaces', 'user'));
+        return view('users.edit', compact('positions', 'programs', 'workspaces', 'user', 'trainers'));
     }
 
     /**
@@ -134,5 +135,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function selectTrainer(Request $request)
+    {
+        if (!$request->has('program_id')) {
+            return null;
+        }
+        $trainers = $this->userRepository->getSelectTrainer($request->program_id);
+
+        return json_encode($trainers);
     }
 }
