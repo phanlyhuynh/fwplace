@@ -30,6 +30,7 @@ class User extends Authenticatable
         'status',
         'lang',
         'role',
+        'trainer_id',
     ];
 
     /**
@@ -41,6 +42,16 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function trainees()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function trainer()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function program()
     {

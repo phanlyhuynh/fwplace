@@ -33,7 +33,7 @@ class UserController extends Controller
         $this->programRepository = $programRepository;
         $this->positionRepository = $positionRepository;
         $this->workspaceRepository = $workspaceRepository;
-        $this->middleware('checkTrainer')->except('index', 'create', 'store', 'edit', 'update');
+        $this->middleware('checkTrainer')->except('index', 'create', 'store', 'edit', 'update', 'getListTrainee');
     }
 
     /**
@@ -163,5 +163,31 @@ class UserController extends Controller
         Alert::success(trans('Delete Employee'), trans('Successfully'));
 
         return redirect('admin/users');
+    }
+
+    public function getListTrainee($id, Request $request)
+    {
+        $programs = $this->programRepository->pluckProgram()->prepend('', config('site.prepend'));
+        $positions = $this->positionRepository->pluckPosition()->prepend('', config('site.prepend'));
+        $workspaces = $this->workspaceRepository->pluckWorkspace()->prepend('', config('site.prepend'));
+        $trainees = $this->userRepository->newQuery();
+        if ($request->has('name')) {
+            $trainees->getListName($request->name);
+        }
+
+        if ($request->has('program_id') && $request->program_id != config('site.prepend')) {
+            $trainees->getList('program_id', $request->program_id);
+        }
+
+        if ($request->has('workspace_id') && $request->workspace_id != config('site.prepend')) {
+            $trainees->getList('workspace_id', $request->workspace_id);
+        }
+
+        if ($request->has('position_id') && $request->position_id != config('site.prepend')) {
+            $trainees->getList('position_id', $request->position_id);
+        }
+        $trainees = $trainees->getListTrainee($id);
+
+        return view('admin.user.traineelist', compact('trainees', 'positions', 'programs', 'workspaces'));
     }
 }

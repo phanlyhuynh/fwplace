@@ -41,7 +41,10 @@
                                 {!! Form::password('password', ['class' => 'form-control m-input', 'placeholder' => __('Enter Password')]) !!}
                             </div>
                             <div class="form-group mt-4">
-                                {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input']) !!}
+                                {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input', 'id' => 'select_program', 'url' => route('get_trainer_by_program')]) !!}
+                            </div>
+                            <div class="form-group mt-4">
+                                {!! Form::select('trainer_id', [__('Trainer')], null, ['class' => 'form-control m-input', 'id' => 'select_trainer']) !!}
                             </div>
                             <div class="form-group mt-4">
                                 {!! Form::select('position_id', $positions, null, ['class' => 'form-control m-input']) !!}
@@ -63,7 +66,9 @@
     @include('admin.assets.js')
     @include('sweetalert::alert')
 
-    @yield('js')
+    @section('js')
+        <script src="{{ asset('js/all.js') }}"></script>
+    @endsection
 
 </body>
 </html>

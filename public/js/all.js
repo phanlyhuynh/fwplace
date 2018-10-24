@@ -80,6 +80,32 @@ $(document).ready(function () {
     $('.delete').click(function () {
         return confirm($(this).attr('message'));
     });
+
+    $('#select_program').on('change', function () {
+        var url = $(this).attr('url');
+        var programId = $(this).val();
+            if (programId && programId!=0) {
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    data: {
+                        program_id: programId
+                    },
+                    data_type: 'json',
+                    success: function (data)
+                    {
+                        $('#select_trainer').empty();
+                        $('#select_trainer').append('<option value="">Trainer</option>');
+                        $.each(JSON.parse(data), function (key, value) {
+                            $('#select_trainer').append('<option value="'+ key +'">' + value + '</option>');
+                        });
+                    }
+            });
+            } else if (programId == 0) {
+                $('#select_trainer').empty();
+                $('#select_trainer').append('<option value="">Trainer</option>');
+            }
+    });
 });
 function readURL(input) {
     if (input.files && input.files[0]) {
