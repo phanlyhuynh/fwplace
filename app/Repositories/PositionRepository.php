@@ -25,4 +25,9 @@ class PositionRepository extends EloquentRepository
     {
         return $this->model->pluck('name', 'id');
     }
+
+    public function getListAllowRegister()
+    {
+        return $this->model->where('allow_register', config('site.allow_register'))->pluck('name', 'id');
+    }
 }

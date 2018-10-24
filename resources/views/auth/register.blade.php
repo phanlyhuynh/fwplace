@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>@lang('auth.login')</title>
+    <title>@lang('auth.register')</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <script src="{{ asset('js/webfont.js') }}"></script>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="m-login__signin">
                         <div class="m-login__head">
-                            <h3 class="m-login__title">@lang('auth.login') Framgia Working Place</h3>
+                            <h3 class="m-login__title">@lang('auth.register') Framgia Working Place</h3>
                         </div>
                         {!! Form::open(['url' => 'register', 'method' => 'POST', 'class' => 'm-login__form m-form']) !!}
                             @foreach($errors->all() as $error)
@@ -41,16 +41,16 @@
                                 {!! Form::password('password', ['class' => 'form-control m-input', 'placeholder' => __('Enter Password')]) !!}
                             </div>
                             <div class="form-group mt-4">
-                                {!! Form::select('program_id', $programs, null, ['class' => 'form-control m-input', 'id' => 'select_program', 'url' => route('get_trainer_by_program')]) !!}
+                                {!! Form::select('program_id', [__('Programs')] + $programs, null, ['class' => 'form-control m-input', 'id' => 'select_program', 'url' => route('get_trainer_by_program')]) !!}
                             </div>
                             <div class="form-group mt-4">
                                 {!! Form::select('trainer_id', [__('Trainer')], null, ['class' => 'form-control m-input', 'id' => 'select_trainer']) !!}
                             </div>
                             <div class="form-group mt-4">
-                                {!! Form::select('position_id', $positions, null, ['class' => 'form-control m-input']) !!}
+                                {!! Form::select('position_id', [__('Positions')] + $positions, null, ['class' => 'form-control m-input']) !!}
                             </div>
                             <div class="form-group mt-4">
-                                {!! Form::select('workspace_id', $workspaces, null, ['class' => 'form-control m-input']) !!}
+                                {!! Form::select('workspace_id', [__('Workspaces')] + $workspaces, null, ['class' => 'form-control m-input']) !!}
                             </div>
                             <div class="m-login__form-action">
                                 {!! Form::submit(__('auth.register'), ['class' => 'btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary']) !!}
