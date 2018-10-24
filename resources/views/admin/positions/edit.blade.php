@@ -29,8 +29,13 @@
                     </div>
                     <div class="form-group m-form__group">
                         {!! Form::label('Type') !!}
-                        {!! Form::select('is_fulltime', [0 => trans('Partime'), 1 => trans('Fulltime')], null, ['class' => 'form-control m-input']) !!}
+                        {!! Form::select('is_fulltime', [0 => trans('Partime'), 1 => trans('Fulltime')], $position->is_fulltime, ['class' => 'form-control m-input']) !!}
                     </div>
+                    <label class="m-checkbox">
+                        {!! Form::checkbox('allow_register', 1, $position->allow_register) !!}
+                        @lang('Allow Register')
+                        <span></span>
+                    </label>
                 </div>
                 <div class="m-portlet__foot m-portlet__foot--fit">
                     <div class="m-form__actions m-form__actions--right">

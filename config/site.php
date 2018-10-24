@@ -62,6 +62,8 @@ return [
         1 => 'Fulltime',
         2 => 'Morning',
         3 => 'Afternoon'
-    ]
+    ],
+    'allow_register' => 1,
+    'disallow_register' => 0,
 
 ];

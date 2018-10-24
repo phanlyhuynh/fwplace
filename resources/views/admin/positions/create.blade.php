@@ -30,6 +30,14 @@
                         {!! Form::label('Type') !!}
                         {!! Form::select('is_fulltime', [0 => __('Partime'), 1 => __('Fulltime')], null, ['class' => 'form-control m-input']) !!}
                     </div>
+                    <div class="form-group m-form__group">
+                        
+                    </div>
+                    <label class="m-checkbox">
+                        {!! Form::checkbox('allow_register', true) !!}
+                        @lang('Allow Register')
+                        <span></span>
+                    </label>
                 </div>
                 <div class="m-portlet__foot m-portlet__foot--fit">
                     <div class="m-form__actions m-form__actions--right">

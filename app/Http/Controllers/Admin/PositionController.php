@@ -51,7 +51,11 @@ class PositionController extends Controller
      */
     public function store(PositionFormRequest $request)
     {
-        $this->positionRepository->create($request->all());
+        $data = $request->all();
+        if (!$request->has('allow_register')) {
+            $data['allow_register'] = config('site.disallow_register');
+        }
+        $this->positionRepository->create($data);
         Alert::success(trans('Add new Position'), trans('Successfully!!!'));
 
         return redirect('admin/positions');
@@ -90,7 +94,11 @@ class PositionController extends Controller
      */
     public function update(PositionFormRequest $request, $id)
     {
-        $this->positionRepository->update($request->all(), $id);
+        $data = $request->all();
+        if (!$request->has('allow_register')) {
+            $data['allow_register'] = config('site.disallow_register');
+        }
+        $this->positionRepository->update($data, $id);
         Alert::success(trans('Edit Position'), trans('Successfully!!!'));
 
         return redirect('admin/positions');
