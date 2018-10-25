@@ -54,3 +54,12 @@ Route::group(['middleware' => 'checkLogin'], function () {
 Route::get('/register', 'UserController@index');
 Route::post('/register', 'UserController@store');
 Route::get('/register/trainer', 'UserController@selectTrainer')->name('get_trainer_by_program');
+
+// Testing
+
+Route::get('/workspace/create/', 'Admin\DiagramController@typeWorkspaceInformation');
+Route::post('/workspace/save/', 'Admin\DiagramController@saveWorkspace')->name('test.save');
+Route::get('/workspace/{id}/add-locations/', 'Admin\DiagramController@generateDiagram')->name('generate');
+Route::post('/workspace/{id}/add-locations/', 'Admin\DiagramController@saveLocation')->name('save_location');
+
+// End testing

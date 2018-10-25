@@ -10,6 +10,8 @@ class Workspace extends Model
     protected $fillable = [
         'name',
         'image',
+        'total_seat',
+        'seat_per_row',
     ];
 
     protected $guarded = ['id'];
@@ -42,13 +44,6 @@ class Workspace extends Model
         $this->locations()->delete();
 
         return parent::delete();
-    }
-
-    public function getTotalSeatAttribute()
-    {
-        $total = $this->locations()->sum('total_seat');
-        
-        return $total;
     }
 
     public function getTotalUserAttribute()

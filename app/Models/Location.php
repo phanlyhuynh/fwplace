@@ -10,9 +10,9 @@ class Location extends Model
 
     protected $fillable = [
         'name',
-        'total_seat',
         'image',
         'workspace_id',
+        'color',
     ];
 
     public function workspace()
