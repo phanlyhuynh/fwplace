@@ -34,3 +34,41 @@ img.workspace_image {
     font-size: 14px !important;
     box-shadow: 0 0 5px #5867dd;
 }
+.seat {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #eef9f5;
+    border: 1px solid #333;
+    display: inline-block;
+    margin-left: -4px;
+    text-align: center;
+}
+.disabled {
+    background-color: #e6e6e6;
+}
+
+.all_seat .ui-selecting {
+    background: #14f3d4;
+}
+.all_seat .ui-selected {
+    background: #14f3d4;
+}
+.all_seat {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: max-content;
+}
+.all_seat li {
+    margin: 3px;
+    padding: 0.4em;
+    font-size: 1.4em;
+    height: 18px;
+}
+.workspace {
+    overflow: visible;
+}
+.form-workspace {
+    display: none;
+}
