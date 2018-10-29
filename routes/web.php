@@ -57,9 +57,11 @@ Route::get('/register/trainer', 'UserController@selectTrainer')->name('get_train
 
 // Testing
 
-Route::get('/workspace/create/', 'Admin\DiagramController@typeWorkspaceInformation');
+Route::get('/workspace/create/', 'Admin\DiagramController@typeWorkspaceInformation')->name('create_workspace');
 Route::post('/workspace/save/', 'Admin\DiagramController@saveWorkspace')->name('test.save');
 Route::get('/workspace/{id}/add-locations/', 'Admin\DiagramController@generateDiagram')->name('generate');
 Route::post('/workspace/{id}/add-locations/', 'Admin\DiagramController@saveLocation')->name('save_location');
+Route::get('/workspace/list', 'Admin\DiagramController@list')->name('list_workspace');
+Route::get('/workspace/{id}/detail', 'Admin\DiagramController@detail')->name('detail_workspace');
 
 // End testing
