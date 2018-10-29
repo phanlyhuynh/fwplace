@@ -37,4 +37,9 @@ class Location extends Model
 
         return asset(config('site.default-image'));
     }
+
+    public function seats()
+    {
+        return $this->hasMany('App\Models\Seat', 'location_id');
+    }
 }
